@@ -7,6 +7,7 @@ import Library from './components/layouts/library';
 import Contact from './components/layouts/contact';
 import Login from './components/users/login';
 import Search from './components/partials/search';
+import Register from './components/users/register';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path = "/contact" element = {<Contact />} />
           <Route path = "/search" element = {<Search />} />
           <Route path = "/login" element = {<Login />} />
+          <Route path = "/register" element = {<Register />} />
         </Routes>
       
     </div>
