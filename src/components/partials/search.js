@@ -1,10 +1,10 @@
 
 
-
+import "./search.css"
 
 export default function Search(){
     return(
-        <div>
+        <div className="searchMainContainer">
             Search
         </div>
     )
