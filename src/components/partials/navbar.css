@@ -1,0 +1,48 @@
+
+
+/*#f0f0f0 #C209C1*/
+
+.navMainContainer{
+    display: flex;
+    flex-direction: row;
+    height: 70px;
+    width: 100%;
+    background-color: #ffffff;
+    border-bottom: 1px solid rgb(223, 219, 219);
+}
+
+.logoContainer{
+    height: 100%;
+    width: 30%;
+    margin-left: 5%;
+}
+
+.logo{
+    height: 98%;
+}
+
+.linkContainer{
+    display: flex;
+    width: 70%;
+    align-items: center;
+}
+
+.navbarLinks{
+    margin-left: 10%;
+    text-decoration: none;
+    color: #C209C1;
+    font-weight: 600;
+}
+
+.navbarLinks:focus{
+    color: #000000;
+}
+
+.icons{
+    margin-left: 5%;
+    color: #C209C1;
+}
+
+.icons:hover{
+    color: #000000;
+}

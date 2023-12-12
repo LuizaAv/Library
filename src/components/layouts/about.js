@@ -3,10 +3,10 @@
 
 
 
-
-export default function Login(){
+export default function About(){
     return(
         <div>
+            About
         </div>
     )
 }
