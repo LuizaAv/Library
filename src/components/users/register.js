@@ -1,36 +1,117 @@
+import { useState } from "react";
+import "./register.css";
 
-import "./register.css"
+export default function Register() {
+    const [name, setName] = useState("");
+    const [surname, setSurname] = useState("");
+    const [email, setEmail] = useState("");
+    const [mobile, setMobile] = useState("");
+    const [wave, setWave] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    
+    const handleName = (e) => {
+        setName(e.target.value)
+    }
 
-export default function Register(){
-    return(
+    const handleSurname = (e) => {
+        setSurname(e.target.value)
+    }
+
+    const handleEmail = (e) => {
+        setEmail(e.target.value)
+    }
+
+    const handleMobile = (e) => {
+        setMobile(e.target.value)
+    }
+
+    const handleWave = (e) => {
+        setWave(e.target.value)
+    }
+
+    const handlePassword = (e) => {
+        setPassword(e.target.value)
+    }
+
+    const handleConfirmPassword = (e) => {
+        setConfirmPassword(e.target.value)
+    }
+
+    return (
         <div className="registrationContainer">
-            <h1>Registration form</h1>
-            <form className="registrationForm">
-                <div className="fullNameContainer">
-                    <div className="fullNameDivs">
-                        <label>Name</label>
-                        <input placeholder="  enter your name" className="fullNameInput"/>
-                    </div>
-                    <div className="fullNameDivs">
-                        <label>Surename</label>
-                        <input placeholder="  enter your surename" className="fullNameInput"/>
-                    </div>
-                </div>
-                <label>Email</label>
-                <input placeholder="  enter the email" className="registrationInputs"/>
-                <label>Mobile number</label>
-                <input placeholder="  enter your mobile number" className="registrationInputs"/>
-                <label>Choose the Wave</label>
-                <select name = "Waves" className="registrationSelect">
-                    <option value = "Wave 6">Wave 6</option>
-                    <option value = "Wave 5">Wave 5</option>
-                    <option value = "Wave 4">Wave 4</option>
-                    <option value = "Wave 3">Wave 3</option>
-                    <option value = "Wave 2">Wave 2</option>
-                    <option value = "Wave 1">Wave 1</option>
-                </select>
-                <input type = "submit" value = "Submit" className = "registrationSubmit"/>
-            </form>
+        <h1>Registration form</h1>
+        <form className="registrationForm">
+            <div className="fullNameContainer">
+            <div className="fullNameDivs">
+                <label>Name</label>
+                <input 
+                placeholder="  enter your name" 
+                type = "text"
+                value = {name}
+                onChange={handleName}
+                className="fullNameInput" 
+                />
+            </div>
+            <div className="fullNameDivs">
+                <label>Surname</label>
+                <input
+                placeholder="  enter your surname"
+                type = "text"
+                value = {surname}
+                onChange = {handleSurname}
+                className="fullNameInput"
+                />
+            </div>
+            </div>
+            <label>Email</label>
+            <input 
+            placeholder="  enter the email" 
+            type = "email"
+            value = {email}
+            onChange = {handleEmail}
+            className = "registrationInputs" 
+            />
+            <label>Mobile number</label>
+            <input
+            placeholder="  enter your mobile number"
+            type="number"
+            value = {mobile}
+            onChange = {handleMobile}
+            className="registrationInputs"
+            />
+            <label>Choose the Wave</label>
+            <select 
+            name="Waves" 
+            className="registrationSelect"
+            value = {wave}
+            onChange = {handleWave}
+            >
+                <option value="Wave 6">Wave 6</option>
+                <option value="Wave 5">Wave 5</option>
+                <option value="Wave 4">Wave 4</option>
+                <option value="Wave 3">Wave 3</option>
+                <option value="Wave 2">Wave 2</option>
+                <option value="Wave 1">Wave 1</option>
+            </select>
+            <label>Create Password</label>
+            <input
+            placeholder="  enter a password, at least 8 digits"
+            type = "password"
+            value = {password}
+            onChange = {handlePassword}
+            className="registrationInputs"
+            />
+            <label>Repeat Password</label>
+            <input
+            placeholder="  repeat the entered password to confirm it"
+            type = "password"
+            value = {confirmPassword}
+            onChange={handleConfirmPassword}
+            className="registrationInputs"
+            />
+            <input type="submit" value="Submit" className="registrationSubmit" />
+        </form>
         </div>
-    )
+    );
 }
