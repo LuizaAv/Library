@@ -77,3 +77,10 @@
     color: #C209C1;
     font-weight: 700;
 }
+
+.registerLink{
+    text-decoration: none;
+    color: #ffffff;
+    margin-bottom: 15%;
+    margin-left: 30%;
+}

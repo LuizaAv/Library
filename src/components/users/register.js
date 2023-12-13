@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./register.css";
+import { Link } from "react-router-dom";
 
 export default function Register() {
     const [name, setName] = useState("");
@@ -111,6 +112,9 @@ export default function Register() {
             className="registrationInputs"
             />
             <input type="submit" value="Submit" className="registrationSubmit" />
+            <Link to="/login" target="_blank" className="registerLink">
+                Have you already an account?
+            </Link>
         </form>
         </div>
     );

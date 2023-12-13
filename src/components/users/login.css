@@ -5,6 +5,7 @@
 .loginContainer{
     margin: auto;
     margin-top: 10%;
+    margin-bottom: 10%;
     width: 30%;
     color: #ffffff;
 }
@@ -31,6 +32,19 @@
     outline: none;
     border: none;
     border-radius: 7px;
+}
+
+#passwordInputContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+.icon{
+    position: absolute;
+    margin-left: 26%;
+    margin-top: 2%;
+    z-index: 1;
+    color: #C209C1;
 }
 
 .loginSubmit{
