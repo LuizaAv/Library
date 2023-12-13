@@ -8,6 +8,7 @@ import Contact from './components/layouts/contact';
 import Login from './components/users/login';
 import Search from './components/partials/search';
 import Register from './components/users/register';
+import Footer from './components/partials/footer';
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
           <Route path = "/login" element = {<Login />} />
           <Route path = "/register" element = {<Register />} />
         </Routes>
-      
+        <Footer />
     </div>
   );
 }
