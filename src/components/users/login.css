@@ -11,7 +11,11 @@
 }
 
 .loginContainer h1{
-    color: #ffffff;
+    background-image: linear-gradient(to left, rgb(13, 4, 153), rgb(6, 129, 245), rgb(136, 208, 230), blue, rgb(156, 7, 156), rgb(55, 13, 241), rgb(173, 8, 91));
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 .loginForm{
@@ -32,11 +36,13 @@
     outline: none;
     border: none;
     border-radius: 7px;
+    box-shadow: 0 3px 10px #fc9af6;
 }
 
 #passwordInputContainer{
     display: flex;
     flex-direction: row;
+    width: 101.5%;
 }
 
 .icon{
@@ -71,5 +77,10 @@
     text-decoration: none;
     color: #ffffff;
     margin-bottom: 5%;
-    margin-left: 30%;
+}
+
+.switchToReg{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

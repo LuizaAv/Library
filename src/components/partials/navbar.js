@@ -15,20 +15,17 @@ export default function Navbar(){
                 </Link>
             </div>
             <div className="linkContainer">
-                <Link to = "/about" className="navbarLinks">
-                    About
+                <Link to = "/" className="navbarLinks">
+                    Home
                 </Link>
                 <Link to = "/library" className="navbarLinks">
                     Dibrary
-                </Link>
-                <Link to = "/contact" className="navbarLinks">
-                    Contact Us
                 </Link>
                 <Link to = "/search" className="navbarLinks">
                     <BsSearch className="icons"/>
                 </Link>
                 <Link to = "/login" className="navbarLinks">
-                    Login
+                    Login/Registration
                 </Link>
                 <Link to = "/login" className="navbarLinks">
                     <BsFillPersonFill className="icons"/>

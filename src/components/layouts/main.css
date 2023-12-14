@@ -4,3 +4,30 @@
 .libraryPic{
     opacity: 0.5;
 }
+
+.mainComponentContainer{
+    position: relative;
+    width: 100%;
+}
+
+.contentContainerOfMain{
+    position: absolute;
+    top: 20%;
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+    width: 100%;
+}
+
+.contentContainerOfMain h1{
+    margin: auto;
+}
+
+.booksRange{
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    margin: auto;
+    margin-top: 5%;
+    justify-content: space-between ;
+}

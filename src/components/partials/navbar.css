@@ -3,12 +3,15 @@
 /*#f0f0f0 #C209C1*/
 
 .navMainContainer{
+    top:0;
+    position: fixed;
     display: flex;
     flex-direction: row;
     height: 70px;
     width: 100%;
     background-color: #ffffff;
     border-bottom: 1px solid rgb(223, 219, 219);
+    z-index: 1;
 }
 
 .logoContainer{
@@ -24,6 +27,8 @@
 .linkContainer{
     display: flex;
     width: 70%;
+    margin-right: 5%;
+    justify-content: flex-end;
     align-items: center;
 }
 
@@ -35,7 +40,11 @@
 }
 
 .navbarLinks:focus{
-    color: #000000;
+    background-image: linear-gradient(to left, rgb(13, 4, 153), rgb(6, 129, 245), rgb(136, 208, 230), blue, rgb(156, 7, 156), rgb(55, 13, 241), rgb(173, 8, 91));
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 .icons{

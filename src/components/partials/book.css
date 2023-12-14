@@ -1,0 +1,18 @@
+
+
+
+
+.bookContainer{
+    height: 200px;
+    width: 200px;
+}
+
+.book{
+    height: 200px;
+    width: 200px;
+}
+
+.description{
+    display: flex;
+    flex-direction: column;
+}
