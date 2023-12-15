@@ -1,5 +1,5 @@
 import "./navbar.css"
-import logo from "../../images/logo.jpeg"
+import logo from "../../images/logo.png"
 import { BsSearch } from "react-icons/bs"
 import { BsFillPersonFill } from "react-icons/bs";
 import { Link } from "react-router-dom"
