@@ -1,16 +1,17 @@
 
 
 
-
 .libraryPic{
     opacity: 0.5;
-    background-repeat: repeat-x;
+    height: 100%;
+    width: 100%;
 }
 
 .mainComponentContainer{
     position: relative;
     width: 100%;
-    min-height: 250vh;
+    min-height: 100vh;
+    background-size: contain;
 }
 
 .contentContainerOfMain{
@@ -45,8 +46,8 @@
 
 .viewMoreBtn{
     margin: auto;
+    margin-left: 25%;
     margin-top: 7%;
-    margin-bottom: 5%;
     height: 40px;
     width: 50%;
     border: none;

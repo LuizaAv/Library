@@ -2,6 +2,7 @@ import "./main.css";
 import libraryPicture from "../../images/library1.jpg";
 import Book from "../partials/book";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const books = [
   {
@@ -80,9 +81,9 @@ export default function Main() {
               </div>
             ))}
           </div>
-        {
-          !check && <button onClick={handleClick} className="viewMoreBtn">View more</button>
-        }
+          <Link to = "./library">
+            <button className="viewMoreBtn">View all</button>
+          </Link>   
       </div>
     </div>
   );

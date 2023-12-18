@@ -3,17 +3,20 @@
 
 import "./book.css";
 import book from "../../images/book2.png"
-
+import { Link } from "react-router-dom";
 
 
 export default function Book({bookInfo}){
     return(
-        <div className="bookContainer">
-            <img src = {book} className="book" alt = "a book"/>
-            <div className="description">
-                <span>{bookInfo.title}</span>
-                <span>{bookInfo.author}</span>
+        <Link to = "/library/bookdetails" target="_blank" className="aBooksLink">
+            <div className="bookContainer">
+                <img src = {book} className="book" alt = "a book"/>
+                <div className="overlay"><span>{bookInfo.title}</span></div>
+                <div className="description">
+                    <span>{bookInfo.title}</span>
+                    <span>{bookInfo.author}</span>
+                </div>
             </div>
-        </div>
+        </Link>
     )
 }

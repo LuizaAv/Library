@@ -55,7 +55,7 @@ export default function Login() {
         </div>
         <input type="submit" value="Submit" className="loginSubmit" />
       </form>
-      <Link to="/register" target="_blank" className="loginLink">
+      <Link to="/login/register" target="_blank" className="loginLink">
         <div className="switchToReg">
           <div>Do you forget password?</div>
           <div>Switch to registration</div>

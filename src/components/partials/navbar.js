@@ -21,7 +21,7 @@ export default function Navbar(){
                 <Link to = "/library" className="navbarLinks">
                     Dibrary
                 </Link>
-                <Link to = "/search" className="navbarLinks">
+                <Link to = "/library" className="navbarLinks">
                     <BsSearch className="icons"/>
                 </Link>
                 <Link to = "/login" className="navbarLinks">
