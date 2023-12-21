@@ -87,13 +87,15 @@ export default function Register() {
             className="registrationSelect"
             value = {wave}
             onChange = {handleWave}
-            >
+            >   
                 <option value="Wave 6">Wave 6</option>
                 <option value="Wave 5">Wave 5</option>
                 <option value="Wave 4">Wave 4</option>
                 <option value="Wave 3">Wave 3</option>
                 <option value="Wave 2">Wave 2</option>
                 <option value="Wave 1">Wave 1</option>
+                <option value="Atlas">Atlas</option>
+                <option value="Arakis">Arakis</option>
             </select>
             <label>Create Password</label>
             <input

@@ -1,4 +1,6 @@
 import Book from "./book";
+import AliceCarousel from "react-alice-carousel";
+import "react-alice-carousel/lib/alice-carousel.css";
 import { useLocation } from "react-router-dom";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import data from "../../server/booksdb.json";
@@ -25,6 +27,18 @@ export default function Bookdetails() {
     setText(text);
     setCheck(true);
   };
+
+  // const responsive = {
+  //   0: { items: 1 },
+  //   568: { items: 3 },
+  //   1024: { items: 5 },
+  // };
+
+  // const items = data.filter(
+  //   (elem) =>
+  //     elem.title.toLocaleLowerCase().trim().includes(book.title.slice(0, 10).toLocaleLowerCase().trim())
+  // );
+  // console.log(items)
 
   return (
     <div className="bookDetailsContainer">

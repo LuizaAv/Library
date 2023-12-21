@@ -12,7 +12,7 @@
     width: 100%;
     min-height: 100vh;
     background-size: contain;
-    margin-bottom: 30%;
+    margin-bottom: 40%;
 }
 
 .contentContainerOfMain{
@@ -50,7 +50,7 @@
 .viewMoreBtn{
     margin: auto;
     margin-left: 25%;
-    margin-top: 7%;
+    margin-top: 2%;
     height: 40px;
     width: 50%;
     border: none;
@@ -70,7 +70,7 @@
 
 .recentAdditionContainer{
     margin: auto;
-    margin-top: 5%;
+    margin-top: 10%;
     width: 80%;
 }
 

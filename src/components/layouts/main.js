@@ -2,7 +2,6 @@ import "./main.css";
 import libraryPicture from "../../images/library1.jpg";
 import pictureBook from "../../images/book2.png";
 import Book from "../partials/book";
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
@@ -22,11 +21,19 @@ export default function Main() {
  
   const show = items.map((item) => (
     <div className="item" data-value="1">
-      <img src={pictureBook} className="sliderPic" />
-      <div>
-      <span>{item.title }</span><br/>
-      <span>{item.author }</span>
-      </div>
+      <Link 
+        to={{
+            pathname: `/library/bookdetails/${item.isbn}`,
+            state: {item}
+        }} 
+        target="_blank" 
+        className="aBooksLink">
+        <img src={pictureBook} className="sliderPic" />
+        <div>
+        <span>{item.title }</span><br/>
+        <span>{item.author }</span>
+        </div>
+      </Link>
     </div>
   ))
 
