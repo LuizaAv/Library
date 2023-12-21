@@ -1,55 +1,21 @@
-
-
-
 import Book from "./book"
-import "./bookDetails.css"
+import { useLocation } from "react-router-dom"
+import data from "../../server/booksdb.json"
 
-const books = [
-    {
-      title: "C++",
-      author: "Stroustrup",
-    },
-    {
-      title: "Javascript",
-      author: "Flanagan",
-    },
-    {
-      title: "You don't know Javascript",
-      author: "Kyle Simpson",
-    },
-    {
-      title: "C++",
-      author: "Stroustrup",
-    },
-    {
-      title: "Javascript",
-      author: "Flanagan",
-    },
-    {
-      title: "You don't know Javascript",
-      author: "Kyle Simpson",
-    },
-    {
-      title: "C++",
-      author: "Stroustrup",
-    },
-    {
-      title: "Javascript",
-      author: "Flanagan",
-    },
-    {
-      title: "You don't know Javascript",
-      author: "Kyle Simpson",
-    },
-  ];
-  
+import "./bookdetails.css"
 
-export default function BookDetails (){
-
+export default function Bookdetails (){
+    const location = useLocation();
+    const id = location.pathname.slice(21, location.pathname.length);
+    const book = data.find((elem) => elem.isbn === id);
 
     return(
         <div className="bookDetailsContainer">
-            <Book bookInfo={books[0]}/>
+            <div className = "firstColoumnBookDetails">
+              <Book bookInfo={book} />
+            </div>
+            <div className="secondColoumnBookDetails">
+            </div>
         </div>
     )
 }

@@ -8,7 +8,6 @@ import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import data from "../../server/booksdb.json";
 
-//https://www.youtube.com/watch?v=li-ylRo7VEc
 
 export default function Main() {
   const displayedBooks = data.slice(0, 3);
@@ -46,7 +45,15 @@ export default function Main() {
           {bookChunks.map((chunk, index) => (
             <div key={index} className="aRange">
               {chunk.map((book, idx) => (
-                <Book key={idx} bookInfo={book} />
+                <Link 
+                to={{
+                    pathname: `/library/bookdetails/${book.isbn}`,
+                    state: {book}
+                }} 
+                target="_blank" 
+                className="aBooksLink">
+                <Book key={book.isbn} bookInfo={book} />
+              </Link>
               ))}
             </div>
           ))}
@@ -61,6 +68,7 @@ export default function Main() {
             items={show}
             responsive={responsive}
             controlsStrategy="alternate"
+            className =  "slide"
           />
         </div>
       </div>

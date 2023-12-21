@@ -3,6 +3,7 @@ import Book from "../partials/book";
 import { BsSearch } from "react-icons/bs";
 import "./library.css";
 import data from "../../server/booksdb.json";
+import { Link } from "react-router-dom";
 
 export default function Library() {
   const [value, setValue] = useState("");
@@ -15,8 +16,6 @@ export default function Library() {
 
   const handleChange = (e) => {
     setValue(e.target.value);
-    // let filtered = data.filter((elem, index) => elem.title.toLowerCase().includes(value.toLowerCase()))
-    // setDisplayedBooks(filtered)
   };
 
   const handleSelect = (e) => {
@@ -213,7 +212,15 @@ export default function Library() {
         {bookChunks.map((chunk, index) => (
           <div key={index} className="aRange">
             {chunk.map((book, idx) => (
-              <Book key={idx} bookInfo={book} />
+              <Link 
+                to={{
+                    pathname: `/library/bookdetails/${book.isbn}`,
+                    state: {book}
+                }} 
+                target="_blank" 
+                className="aBooksLink">
+                <Book key={book.isbn} bookInfo={book} />
+              </Link>
             ))}
           </div>
         ))}

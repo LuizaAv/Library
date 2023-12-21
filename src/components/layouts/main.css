@@ -108,3 +108,7 @@
     -webkit-filter: blur(0px);
     transition: 0.8s ease-out 200ms;
 }
+
+.slide{
+    color: #ffffff;
+}

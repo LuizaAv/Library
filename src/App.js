@@ -6,7 +6,7 @@ import Library from './components/layouts/library';
 import Login from './components/users/login';
 import Register from './components/users/register';
 import Footer from './components/partials/footer';
-import BookDetails from './components/partials/bookDetails';
+import Bookdetails from './components/partials/bookdetails';
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
           <Route path = "/library" element = {<Library />} />
           <Route path = "/login" element = {<Login />} />
           <Route path = "/login/register" element = {<Register />} />
-          <Route path = "/library/bookdetails" element = {<BookDetails />} />
+          <Route path = "/library/bookdetails/:id" element = {<Bookdetails />} />
         </Routes>
         <Footer className="footerInApp"/>
     </div>
