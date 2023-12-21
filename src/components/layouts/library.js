@@ -2,74 +2,77 @@ import { useState } from "react";
 import Book from "../partials/book";
 import { BsSearch } from "react-icons/bs";
 import "./library.css";
-
-const books = [
-  {
-    title: "C++",
-    author: "Stroustrup",
-  },
-  {
-    title: "Javascript",
-    author: "Flanagan",
-  },
-  {
-    title: "You don't know Javascript",
-    author: "Kyle Simpson",
-  },
-  {
-    title: "C++",
-    author: "Stroustrup",
-  },
-  {
-    title: "Javascript",
-    author: "Flanagan",
-  },
-  {
-    title: "You don't know Javascript",
-    author: "Kyle Simpson",
-  },
-  {
-    title: "C++",
-    author: "Stroustrup",
-  },
-  {
-    title: "Javascript",
-    author: "Flanagan",
-  },
-  {
-    title: "You don't know Javascript",
-    author: "Kyle Simpson",
-  },
-];
+import data from "../../server/booksdb.json";
 
 export default function Library() {
-  const [value, setValue] = useState("")
+  const [value, setValue] = useState("");
   const [input, setInput] = useState("");
   const [start, setStart] = useState(0);
-  const [displayedBooks, setDisplayedBooks] = useState(books.slice(0, 3));
+  const [select, setSelect] = useState("book");
+  const [displayedBooks, setDisplayedBooks] = useState(data.slice(0, 3));
   const [check, setCheck] = useState(false);
   const [activeFilter, setActiveFilter] = useState([]);
-  
+
   const handleChange = (e) => {
-    setValue(e.target.value)
-  }
+    setValue(e.target.value);
+    // let filtered = data.filter((elem, index) => elem.title.toLowerCase().includes(value.toLowerCase()))
+    // setDisplayedBooks(filtered)
+  };
+
+  const handleSelect = (e) => {
+    setSelect(e.target.value);
+  };
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      setInput(value);
-      setValue("");
+      if (select === "book") {
+        const filteredBooks = data.filter(
+          (elem) =>
+            elem.title.toLocaleLowerCase().trim().includes(value.toLocaleLowerCase().trim())
+        );
+        setDisplayedBooks(filteredBooks);
+        setCheck(true)
+      } else if (select === "author") {
+        const filteredBooks = data.filter((elem) =>
+        elem.author.some(
+          (author) =>
+            author.toLowerCase().includes(value.toLocaleLowerCase().trim())
+        ))
+        setDisplayedBooks(filteredBooks);
+        setCheck(true)
+      }
+        setInput(value);
+        setValue("");
+        setActiveFilter([])
     }
   };
 
-  const searchClick = (e) =>{
-    setInput(value);
-    setValue("");
+  const searchClick = (e) => {
+    if (select === "book") {
+      const filteredBooks = data.filter(
+        (elem) =>
+          elem.title.toLocaleLowerCase().trim().includes(value.toLocaleLowerCase().trim())
+      );
+      setDisplayedBooks(filteredBooks);
+      setCheck(true)
+    } else if (select === "author") {
+      const filteredBooks = data.filter((elem) =>
+      elem.author.some(
+        (author) =>
+          author.toLowerCase().includes(value.toLocaleLowerCase().trim())
+      ))
+      setDisplayedBooks(filteredBooks);
+      setCheck(true)
+    }
+      setInput(value);
+      setValue("");
+      setActiveFilter([])
   }
 
   const handleClick = () => {
-    if (start + 3 < books.length) {
+    if (start + 3 < data.length) {
       const newStart = start + 3;
-      const newBooks = books.slice(newStart, newStart + 3);
+      const newBooks = data.slice(newStart, newStart + 3);
       setStart(newStart);
       setDisplayedBooks([...displayedBooks, ...newBooks]);
     } else {
@@ -78,21 +81,59 @@ export default function Library() {
   };
 
   const handleFilteredClick = (filter) => {
-    if (activeFilter.includes(filter)) {
+    if(activeFilter.includes(filter)) {
       setActiveFilter(activeFilter.filter((f) => f !== filter));
-    } else {
+    }else {
       setActiveFilter([...activeFilter, filter]);
     }
+
+    if(filter === "All-books"){
+      setActiveFilter(["All-books"])
+      setDisplayedBooks(data);
+      setStart(data.length)
+      setCheck(true);
+    }else if(filter === "Non-fiction"){
+      let filtered = data.filter((item) => item.category.includes("Non-fiction"))
+      console.log(filtered)
+      setDisplayedBooks(filtered)
+      setStart(data.length)
+      setCheck(true);
+      setActiveFilter(["Non-fiction"]);
+    }else if(filter === "Fiction"){
+      let filtered = data.filter((item) => item.category.includes("Fiction"))
+      console.log(filtered)
+      setDisplayedBooks(filtered)
+      setStart(data.length)
+      setCheck(true);
+      setActiveFilter(["Fiction"]);
+    }else if(filter === "Biography"){
+      let filtered = data.filter((item) => item.category.includes("Biography"))
+      console.log(filtered)
+      setDisplayedBooks(filtered)
+      setStart(data.length)
+      setCheck(true);
+      setActiveFilter(["Biography"]);
+    }else if(filter === "History"){
+      let filtered = data.filter((item) => item.category.includes("History"))
+      console.log(filtered)
+      setDisplayedBooks(filtered)
+      setStart(data.length)
+      setCheck(true);
+      setActiveFilter(["History"]);
+    }
+    
   };
 
   const filterIsActive = (filter) => activeFilter.includes(filter);
 
   const reset = (e) => {
     setActiveFilter([]);
+    setDisplayedBooks(data.slice(0,3));
+    setStart(0);
+    setCheck(false)
   };
-  console.log(input)
 
-  const bookChunks = [];
+  let bookChunks = [];
   for (let i = 0; i < displayedBooks.length; i += 3) {
     bookChunks.push(displayedBooks.slice(i, i + 3));
   }
@@ -100,6 +141,10 @@ export default function Library() {
   return (
     <div className="libraryContainer">
       <div className="filterContainer">
+        <select id="selectBy" onChange={handleSelect}>
+          <option value="book">Select by book's name</option>
+          <option value="author">Select by author's name</option>
+        </select>
         <div className="searchInputContainer">
           <input
             placeholder="  Search books"
@@ -109,7 +154,7 @@ export default function Library() {
             value={value}
           />
           <div onClick={searchClick} className="iconInDibrary">
-            <BsSearch/>
+            <BsSearch />
           </div>
         </div>
         <div className="buttonsContainer">
@@ -125,45 +170,39 @@ export default function Library() {
           </button>
           <button
             className={
-              filterIsActive("C++") ? "filterBtnActive" : "filterBtnInactive"
+              filterIsActive("Fiction") 
+              ? "filterBtnActive" 
+              : "filterBtnInactive"
             }
-            onClick={() => handleFilteredClick("C++")}
+            onClick={() => handleFilteredClick("Fiction")}
           >
-            C++
+            Fiction
           </button>
           <button
             className={
-              filterIsActive("Javacript")
+              filterIsActive("Non-fiction")
                 ? "filterBtnActive"
                 : "filterBtnInactive"
             }
-            onClick={() => handleFilteredClick("Javacript")}
+            onClick={() => handleFilteredClick("Non-fiction")}
           >
-            Javacript
+          Non-fiction
           </button>
           <button
             className={
-              filterIsActive("Java") ? "filterBtnActive" : "filterBtnInactive"
+              filterIsActive("Biography") ? "filterBtnActive" : "filterBtnInactive"
             }
-            onClick={() => handleFilteredClick("Java")}
+            onClick={() => handleFilteredClick("Biography")}
           >
-            Java
+          Biography
           </button>
           <button
             className={
-              filterIsActive("Python") ? "filterBtnActive" : "filterBtnInactive"
+              filterIsActive("History") ? "filterBtnActive" : "filterBtnInactive"
             }
-            onClick={() => handleFilteredClick("Python")}
+            onClick={() => handleFilteredClick("History")}
           >
-            Python
-          </button>
-          <button
-            className={
-              filterIsActive("C") ? "filterBtnActive" : "filterBtnInactive"
-            }
-            onClick={() => handleFilteredClick("C")}
-          >
-            C
+          History
           </button>
         </div>
         <button className="filterResetBtn" onClick={reset}>

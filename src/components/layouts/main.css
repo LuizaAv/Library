@@ -12,15 +12,18 @@
     width: 100%;
     min-height: 100vh;
     background-size: contain;
+    margin-bottom: 30%;
 }
 
 .contentContainerOfMain{
     position: absolute;
     top: 15%;
+    width: 100%; 
     display: flex;
     flex-direction: column;
+    flex-grow: 1; 
     color: #ffffff;
-    width: 100%;
+    padding: 20px;
 }
 
 .contentContainerOfMain h1{
@@ -62,5 +65,46 @@
 .viewMoreBtn:hover{
     background-color: #ffffff;
     color: #C209C1;
+    transition: 0.8s ease-out 200ms;
+}
+
+.recentAdditionContainer{
+    margin: auto;
+    margin-top: 5%;
+    width: 80%;
+}
+
+.recentAdditionContainer h1{
+    margin-left: 38%;
+    margin-bottom: 3%;
+    background-image: linear-gradient(to left, rgb(13, 4, 153), rgb(6, 129, 245), rgb(136, 208, 230), blue, rgb(156, 7, 156), rgb(55, 13, 241), rgb(173, 8, 91));
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.item{
+    margin: auto;
+    height: 200px;;
+    width: 100px;
+}
+
+.item div{
+    position: absolute;
+    font-size: 12px;
+}
+
+.sliderPic{
+    height: 100px;;
+    width: 100px;
+    -webkit-filter: blur(1px);
+    transition: 0.8s ease-out 200ms;
+}
+
+.item:hover .sliderPic{
+    height: 110px;
+    width: 110px;
+    -webkit-filter: blur(0px);
     transition: 0.8s ease-out 200ms;
 }

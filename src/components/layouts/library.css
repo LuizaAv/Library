@@ -1,7 +1,4 @@
 
-
-
-
 .libraryContainer{
     margin-top: 15%;
     display: flex;
@@ -9,6 +6,17 @@
     width: 100%;
     justify-content: space-between;
     margin-bottom: 10%;
+}
+
+#selectBy{
+    width: 50%;
+    height: 30px;
+    outline: none;
+    border: none;
+    border-radius: 15px;
+    margin-left: 25%;
+    color: #ffffff;
+    background-color: transparent;
 }
 
 .searchInputContainer{
@@ -51,6 +59,11 @@
     margin-right: 2%;
 }
 
+.aRange{
+    display: flex;
+    justify-content: flex-start;
+}
+
 .filterBtnInactive{
     width: 80%;
     height: 25px;
@@ -74,7 +87,8 @@
     outline: none;
     border: none;
     margin-top: 3%;
-    background-color: green;
+    background-color: rgb(107, 4, 107);
+    color: #ffffff;
 }
 
 .filterResetBtn{

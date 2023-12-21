@@ -20,7 +20,7 @@ function App() {
           <Route path = "/login/register" element = {<Register />} />
           <Route path = "/library/bookdetails" element = {<BookDetails />} />
         </Routes>
-        <Footer />
+        <Footer className="footerInApp"/>
     </div>
   );
 }
