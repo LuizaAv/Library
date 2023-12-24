@@ -48,7 +48,7 @@ export default function Bookdetails() {
       <div className="secondColoumnBookDetails">
         <h1>{book.title}</h1>
         <h4>
-          <span>Author:</span> {book.author}
+          <span>Author:</span> {book.authors}
         </h4>
         <h4>
           <span>Genre:</span> {book.category.map((elem) => `${elem}, `)}
