@@ -2,7 +2,7 @@ import { useState } from "react";
 import Book from "../partials/book";
 import { BsSearch } from "react-icons/bs";
 import "./library.css";
-import data from "../../server/booksdb.json";
+import data from "../../dbjson/booksdb.json";
 import { Link } from "react-router-dom";
 
 export default function Library() {
@@ -33,7 +33,7 @@ export default function Library() {
         setCheck(true)
       } else if (select === "author") {
         const filteredBooks = data.filter((elem) =>
-        elem.author.some(
+        elem.authors.some(
           (author) =>
             author.toLowerCase().includes(value.toLocaleLowerCase().trim())
         ))
@@ -56,7 +56,7 @@ export default function Library() {
       setCheck(true)
     } else if (select === "author") {
       const filteredBooks = data.filter((elem) =>
-      elem.author.some(
+      elem.authors.some(
         (author) =>
           author.toLowerCase().includes(value.toLocaleLowerCase().trim())
       ))

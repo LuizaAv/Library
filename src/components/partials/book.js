@@ -15,7 +15,7 @@ console.log(id)
         <div className="description">
           <span>{bookInfo.title}</span>
           <br />
-          <span>{bookInfo.author}</span>
+          <span>{bookInfo.authors}</span>
         </div>
       </div>
   );

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./register.css";
 import { Link } from "react-router-dom";
+import axios from "axios"
 
 export default function Register() {
     const [name, setName] = useState("");
@@ -11,6 +12,13 @@ export default function Register() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        axios.post("http://localhost:3001/register", {name, surname, email, mobile, wave, password})
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+    }
+
     const handleName = (e) => {
         setName(e.target.value)
     }
@@ -42,7 +50,7 @@ export default function Register() {
     return (
         <div className="registrationContainer">
         <h1>Registration form</h1>
-        <form className="registrationForm">
+        <form className="registrationForm" onSubmit={handleSubmit}>
             <div className="fullNameContainer">
             <div className="fullNameDivs">
                 <label>Name</label>

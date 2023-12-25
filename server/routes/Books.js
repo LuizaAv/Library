@@ -1,21 +1,26 @@
-// const express = require("express");
-// const router = express.Router();
+const mongoose = require("mongoose");
 
+const BookSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    authors: [
+        {
+            type: String,
+            required: true
+        }
+    ],
+    isbn: {
+        type: String,
+        required: true
+    },
+    published_year: {
+        type: String,
+        required: true
+    }
+})
 
-// router.get("/", (err, data) => {
-//     data.send({data: "Books have loaded"})
-// })
+const BooksModel = mongoose.model("book", BookSchema);
 
-// router.post("/", (err, data) => {
-//     data.send({data: "Books have been created"})
-// })
-
-// router.put("/", (err, data) => {
-//     data.send({data: "Books have updated"})
-// })
-
-// router.delete("/", (err, data) => {
-//     data.send({data: "Books have deleted"})
-// })
-
-// module.exports = router
+module.exports = BooksModel;

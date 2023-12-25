@@ -5,11 +5,35 @@ import Book from "../partials/book";
 import { Link } from "react-router-dom";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
-import data from "../../server/booksdb.json";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 
 export default function Main() {
-  const displayedBooks = data.slice(0, 3);
+  const [result, setResult] = useState([]);
+  const [displayedBooks, setDisplayedBooks] = useState([]);
+  const [element, setElement] = useState([])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try{
+        const response = await axios.get("http://localhost:3001/books");
+        setResult(response.data)
+      }catch (err){
+        console.log("Handled error in fetching time: ",  err)
+      }
+    }
+
+    fetchData();
+  }, [])
+
+  useEffect(() => {
+    setDisplayedBooks(result.slice(0, 3));
+    setElement(result.slice(result.length - 10, result.length));
+  }, [result])
+
+  console.log(result)
+  console.log(displayedBooks)
 
   const responsive = {
     0: { items: 1 },
@@ -17,9 +41,8 @@ export default function Main() {
     1024: { items: 5 },
   };
 
-  const items = data.slice(data.length - 10, data.length)
- 
-  const show = items.map((item) => (
+ console.log(element)
+  const show = element.map((item) => (
     <div className="item" data-value="1">
       <Link 
         to={{
@@ -28,10 +51,10 @@ export default function Main() {
         }} 
         target="_blank" 
         className="aBooksLink">
-        <img src={pictureBook} className="sliderPic" />
+        <img src={pictureBook} className="sliderPic" alt="slidePicture"/>
         <div>
         <span>{item.title }</span><br/>
-        <span>{item.author }</span>
+        <span>{item.authors}</span>
         </div>
       </Link>
     </div>

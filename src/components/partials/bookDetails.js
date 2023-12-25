@@ -3,7 +3,7 @@ import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { useLocation } from "react-router-dom";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import data from "../../server/booksdb.json";
+import data from "../../dbjson/booksdb.json";
 
 import "./bookdetails.css";
 import { useState } from "react";
