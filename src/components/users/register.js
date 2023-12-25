@@ -2,13 +2,15 @@ import { useState } from "react";
 import "./register.css";
 import { Link } from "react-router-dom";
 import axios from "axios"
+import {validationOfEmail} from "./regValidations"
 
 export default function Register() {
     const [name, setName] = useState("");
     const [surname, setSurname] = useState("");
     const [email, setEmail] = useState("");
+    const [emailErr, setEmailErr] = useState("");
     const [mobile, setMobile] = useState("");
-    const [wave, setWave] = useState("");
+    const [wave, setWave] = useState("Wave 6");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     
@@ -28,7 +30,16 @@ export default function Register() {
     }
 
     const handleEmail = (e) => {
-        setEmail(e.target.value)
+        const emailVal = e.target.value;
+        setEmail(emailVal);
+
+        if(validationOfEmail(emailVal)){
+            setEmailErr(false)
+        }else{
+            setTimeout(() => {
+                setEmailErr("Please check email format")
+            }, 10000)
+        }
     }
 
     const handleMobile = (e) => {
@@ -81,6 +92,7 @@ export default function Register() {
             onChange = {handleEmail}
             className = "registrationInputs" 
             />
+            {emailErr && <div className="errorReg">{emailErr}</div>}
             <label>Mobile number</label>
             <input
             placeholder="  enter your mobile number"
