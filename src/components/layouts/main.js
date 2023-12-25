@@ -5,35 +5,18 @@ import Book from "../partials/book";
 import { Link } from "react-router-dom";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
-import axios from "axios";
 import { useEffect, useState } from "react";
 
 
-export default function Main() {
-  const [result, setResult] = useState([]);
+export default function Main({data}) {
+  const result = data;
   const [displayedBooks, setDisplayedBooks] = useState([]);
-  const [element, setElement] = useState([])
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try{
-        const response = await axios.get("http://localhost:3001/books");
-        setResult(response.data)
-      }catch (err){
-        console.log("Handled error in fetching time: ",  err)
-      }
-    }
-
-    fetchData();
-  }, [])
+  const [element, setElement] = useState([]);
 
   useEffect(() => {
     setDisplayedBooks(result.slice(0, 3));
     setElement(result.slice(result.length - 10, result.length));
   }, [result])
-
-  console.log(result)
-  console.log(displayedBooks)
 
   const responsive = {
     0: { items: 1 },
@@ -41,7 +24,6 @@ export default function Main() {
     1024: { items: 5 },
   };
 
- console.log(element)
   const show = element.map((item) => (
     <div className="item" data-value="1">
       <Link 
