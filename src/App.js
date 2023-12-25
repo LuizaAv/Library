@@ -32,7 +32,7 @@ function App() {
         <Routes>
           <Route path = "/" element = {<Main data = {result}/>} />
           <Route path = "/about" element = {<Main data = {result} />} />
-          <Route path = "/library" element = {<Library />} />
+          <Route path = "/library" element = {<Library data = {result}/>} />
           <Route path = "/login" element = {<Login />} />
           <Route path = "/login/register" element = {<Register />} />
           <Route path = "/library/bookdetails/:id" element = {<Bookdetails />} />

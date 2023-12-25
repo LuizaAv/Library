@@ -1,18 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Book from "../partials/book";
 import { BsSearch } from "react-icons/bs";
 import "./library.css";
-import data from "../../dbjson/booksdb.json";
 import { Link } from "react-router-dom";
 
-export default function Library() {
+export default function Library({data}) {
+  let result = data;
   const [value, setValue] = useState("");
-  const [input, setInput] = useState("");
   const [start, setStart] = useState(0);
   const [select, setSelect] = useState("book");
-  const [displayedBooks, setDisplayedBooks] = useState(data.slice(0, 3));
+  const [displayedBooks, setDisplayedBooks] = useState([]);
   const [check, setCheck] = useState(false);
   const [activeFilter, setActiveFilter] = useState([]);
+
+  useEffect(() => {
+    if (result.length > 0) {
+      const initialDisplay = result.slice(0, Math.min(result.length, 3));
+      setDisplayedBooks(initialDisplay);
+    }
+  }, [result]);
 
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -25,14 +31,14 @@ export default function Library() {
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       if (select === "book") {
-        const filteredBooks = data.filter(
+        const filteredBooks = result.filter(
           (elem) =>
             elem.title.toLocaleLowerCase().trim().includes(value.toLocaleLowerCase().trim())
         );
         setDisplayedBooks(filteredBooks);
         setCheck(true)
       } else if (select === "author") {
-        const filteredBooks = data.filter((elem) =>
+        const filteredBooks = result.filter((elem) =>
         elem.authors.some(
           (author) =>
             author.toLowerCase().includes(value.toLocaleLowerCase().trim())
@@ -40,7 +46,6 @@ export default function Library() {
         setDisplayedBooks(filteredBooks);
         setCheck(true)
       }
-        setInput(value);
         setValue("");
         setActiveFilter([])
     }
@@ -48,14 +53,14 @@ export default function Library() {
 
   const searchClick = (e) => {
     if (select === "book") {
-      const filteredBooks = data.filter(
+      const filteredBooks = result.filter(
         (elem) =>
           elem.title.toLocaleLowerCase().trim().includes(value.toLocaleLowerCase().trim())
       );
       setDisplayedBooks(filteredBooks);
       setCheck(true)
     } else if (select === "author") {
-      const filteredBooks = data.filter((elem) =>
+      const filteredBooks = result.filter((elem) =>
       elem.authors.some(
         (author) =>
           author.toLowerCase().includes(value.toLocaleLowerCase().trim())
@@ -63,15 +68,14 @@ export default function Library() {
       setDisplayedBooks(filteredBooks);
       setCheck(true)
     }
-      setInput(value);
       setValue("");
       setActiveFilter([])
   }
 
   const handleClick = () => {
-    if (start + 3 < data.length) {
+    if (start + 3 < result.length) {
       const newStart = start + 3;
-      const newBooks = data.slice(newStart, newStart + 3);
+      const newBooks = result.slice(newStart, newStart + 3);
       setStart(newStart);
       setDisplayedBooks([...displayedBooks, ...newBooks]);
     } else {
@@ -88,35 +92,31 @@ export default function Library() {
 
     if(filter === "All-books"){
       setActiveFilter(["All-books"])
-      setDisplayedBooks(data);
-      setStart(data.length)
+      setDisplayedBooks(result);
+      setStart(result.length)
       setCheck(true);
     }else if(filter === "Non-fiction"){
-      let filtered = data.filter((item) => item.category.includes("Non-fiction"))
-      console.log(filtered)
+      let filtered = result.filter((item) => item.category.includes("Non-fiction"))
       setDisplayedBooks(filtered)
-      setStart(data.length)
+      setStart(result.length)
       setCheck(true);
       setActiveFilter(["Non-fiction"]);
     }else if(filter === "Fiction"){
-      let filtered = data.filter((item) => item.category.includes("Fiction"))
-      console.log(filtered)
+      let filtered = result.filter((item) => item.category.includes("Fiction"))
       setDisplayedBooks(filtered)
-      setStart(data.length)
+      setStart(result.length)
       setCheck(true);
       setActiveFilter(["Fiction"]);
     }else if(filter === "Biography"){
-      let filtered = data.filter((item) => item.category.includes("Biography"))
-      console.log(filtered)
+      let filtered = result.filter((item) => item.category.includes("Biography"))
       setDisplayedBooks(filtered)
-      setStart(data.length)
+      setStart(result.length)
       setCheck(true);
       setActiveFilter(["Biography"]);
     }else if(filter === "History"){
-      let filtered = data.filter((item) => item.category.includes("History"))
-      console.log(filtered)
+      let filtered = result.filter((item) => item.category.includes("History"))
       setDisplayedBooks(filtered)
-      setStart(data.length)
+      setStart(result.length)
       setCheck(true);
       setActiveFilter(["History"]);
     }
@@ -127,7 +127,7 @@ export default function Library() {
 
   const reset = (e) => {
     setActiveFilter([]);
-    setDisplayedBooks(data.slice(0,3));
+    setDisplayedBooks(result.slice(0,3));
     setStart(0);
     setCheck(false)
   };
