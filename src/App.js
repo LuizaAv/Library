@@ -35,7 +35,7 @@ function App() {
           <Route path = "/library" element = {<Library data = {result}/>} />
           <Route path = "/login" element = {<Login />} />
           <Route path = "/login/register" element = {<Register />} />
-          <Route path = "/library/bookdetails/:id" element = {<Bookdetails />} />
+          <Route path = "/library/bookdetails/:id" element = {<Bookdetails data = {result}/>} />
         </Routes>
         <Footer className="footerInApp"/>
     </div>

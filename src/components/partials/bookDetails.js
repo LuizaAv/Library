@@ -3,17 +3,16 @@ import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { useLocation } from "react-router-dom";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import data from "../../dbjson/booksdb.json";
-
 import "./bookdetails.css";
 import { useState } from "react";
 
-export default function Bookdetails() {
+export default function Bookdetails({data}) {
+  const res = data
   const [text, setText] = useState("");
   const [check, setCheck] = useState(false);
   const location = useLocation();
   const id = location.pathname.slice(21, location.pathname.length);
-  const book = data.find((elem) => elem.isbn === id);
+  const book = res ? res.find((elem) => elem.isbn === id) : null;
 
   const genAI = new GoogleGenerativeAI(
     "AIzaSyDc6T6ZoFDZRswbFXfYw8KEOi57VN_w_6w"
@@ -41,31 +40,35 @@ export default function Bookdetails() {
   // console.log(items)
 
   return (
-    <div className="bookDetailsContainer">
-      <div className="firstColoumnBookDetails">
-        <Book bookInfo={book} />
-      </div>
-      <div className="secondColoumnBookDetails">
-        <h1>{book.title}</h1>
-        <h4>
-          <span>Author:</span> {book.authors}
-        </h4>
-        <h4>
-          <span>Genre:</span> {book.category.map((elem) => `${elem}, `)}
-        </h4>
-        <h4>
-          <span>Synopsis:</span>
-          {!check ? (
-            <button onClick={fetchData} className="bookDetailsBtn">Generate description</button>
-          ) : (
-            <div className="generatedDescription">{`  ${text}`}</div>
-          )}
-        </h4>
-        <div className="borrowReserveContainer">
-          <button className="bookDetailsBtn">Borrow</button>
-          <button className="bookDetailsBtn">Reserve</button>
+    <div >
+      {!book ? <div>...Loading</div> :
+      <div className="bookDetailsContainer">
+        <div className="firstColoumnBookDetails">
+          <Book bookInfo={book} />
+        </div>
+        <div className="secondColoumnBookDetails">
+          <h1>{book.title}</h1>
+          <h4>
+            <span>Author:</span> {book.authors}
+          </h4>
+          <h4>
+            <span>Genre:</span> {book.category.map((elem) => `${elem}, `)}
+          </h4>
+          <h4>
+            <span>Synopsis:</span>
+            {!check ? (
+              <button onClick={fetchData} className="bookDetailsBtn">Generate description</button>
+            ) : (
+              <div className="generatedDescription">{`  ${text}`}</div>
+            )}
+          </h4>
+          <div className="borrowReserveContainer">
+            <button className="bookDetailsBtn">Borrow</button>
+            <button className="bookDetailsBtn">Reserve</button>
+          </div>
         </div>
       </div>
+    }
     </div>
   );
 }
