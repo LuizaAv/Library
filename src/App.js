@@ -9,6 +9,7 @@ import Login from './components/users/login';
 import Register from './components/users/register';
 import Footer from './components/partials/footer';
 import Bookdetails from './components/partials/bookdetails';
+import UserHomePage from './components/users/userHomepage';
 
 function App() {
   const [result, setResult] = useState([])
@@ -36,6 +37,7 @@ function App() {
           <Route path = "/login" element = {<Login />} />
           <Route path = "/login/register" element = {<Register />} />
           <Route path = "/library/bookdetails/:id" element = {<Bookdetails data = {result}/>} />
+          <Route path = "/login/userhomepage/:id" element = {<UserHomePage />}/>
         </Routes>
         <Footer className="footerInApp"/>
     </div>
