@@ -3,6 +3,7 @@ import "./login.css";
 import { Link } from "react-router-dom";
 import { BiShow } from "react-icons/bi";
 import { BiHide } from "react-icons/bi";
+import axios from "axios";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -28,10 +29,23 @@ export default function Login() {
     }
   }
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:3001/login", {
+        email,
+        password,
+      });
+      console.log(response.data); 
+    } catch (error) {
+      console.error("Login error:", error);
+    }
+  };
+
   return (
     <div className="loginContainer">
       <h1>Login form</h1>
-      <form className="loginForm">
+      <form className="loginForm" onSubmit={handleSubmit}>
         <label>Email</label>
         <input
           type="text"
