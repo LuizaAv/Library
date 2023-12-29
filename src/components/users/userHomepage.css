@@ -3,6 +3,25 @@
 
 .userHomeContainer{
     display: flex;
+    flex-direction: row;
     height: 100vh;
-    width: 100%;
+    width: 90%;
+    margin: auto;
+    margin-top: 15%;
+}
+
+.avatarContainer{
+    width: 30%;
+}
+
+.avatar{
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;
+}
+
+.infoContainer{
+    display: flex;
+    flex-direction: column;
+    color: #ffffff
 }

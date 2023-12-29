@@ -1,4 +1,4 @@
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import "./register.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -17,6 +17,7 @@ export default function Register() {
   const [emailErr, setEmailErr] = useState(false);
   const [mobile, setMobile] = useState("");
   const [wave, setWave] = useState("Wave 6");
+  const [gender, setGender] = useState("Female");
   const [password, setPassword] = useState("");
   const [passwordErr, setPasswordErr] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -26,12 +27,26 @@ export default function Register() {
 
   useEffect(() => {
     if (successReg) {
-      navigate(`/login/userhomepage/${name}.${surname}`);
+      navigate(`/login/userhomepage/${email}`);
     }
-  }, [successReg, name, surname]);
+  }, [successReg]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (
+      name !== "" &&
+      surname !== "" &&
+      email !== "" &&
+      mobile !== "" &&
+      wave !== "" &&
+      password !== "" &&
+      confirmPassword !== "" &&
+      !nameErr &&
+      !surnameErr &&
+      !emailErr &&
+      !passwordErr &&
+      !confirmPassErr
+    ) {
       axios
         .post("http://localhost:3001/register", {
           name,
@@ -39,27 +54,29 @@ export default function Register() {
           email,
           mobile,
           wave,
+          gender,
           password,
         })
         .then((res) => {
           console.log(res);
-          return res
+          return res;
         })
         .then((res) => {
-          if(res.status === 201){
-           setSuccessReg(true);
-           console.log("hi")
-          }else {
-            setSuccessReg(false)
+          if (res.status === 201) {
+            setSuccessReg(true);
+            console.log("hi");
+          } else {
+            setSuccessReg(false);
             setEmail("");
             setPassword("");
             setConfirmPassword("");
           }
         })
         .catch((err) => console.log(err));
+    }
   };
 
-    const handleName = (e) => {
+  const handleName = (e) => {
     let nameInput = e.target.value;
     setName(nameInput);
 
@@ -100,6 +117,10 @@ export default function Register() {
   const handleWave = (e) => {
     setWave(e.target.value);
   };
+
+  const handleGender = (e) => {
+    setGender(e.target.value);
+  }
 
   const handlePassword = (e) => {
     let pass = e.target.value;
@@ -189,6 +210,16 @@ export default function Register() {
           <option value="Wave 1">Wave 1</option>
           <option value="Atlas">Atlas</option>
           <option value="Arakis">Arakis</option>
+        </select>
+        <label>Gender</label>
+        <select
+          name="Gender"
+          className="registrationSelect"
+          value={gender}
+          onChange={handleGender}
+        >
+          <option value="Wave 6">Female</option>
+          <option value="Wave 5">Male</option>
         </select>
         <label>Create Password</label>
         <input

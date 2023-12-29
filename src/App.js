@@ -12,7 +12,8 @@ import Bookdetails from './components/partials/bookdetails';
 import UserHomePage from './components/users/userHomepage';
 
 function App() {
-  const [result, setResult] = useState([])
+  const [result, setResult] = useState([]);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,6 +28,10 @@ function App() {
     fetchData();
   }, [])
 
+  const updateLoggedInValue = (value) => {
+      setLoggedIn(value)
+  }
+
   return (
     <div className="App">
         <Navbar />
@@ -34,7 +39,7 @@ function App() {
           <Route path = "/" element = {<Main data = {result}/>} />
           <Route path = "/about" element = {<Main data = {result} />} />
           <Route path = "/library" element = {<Library data = {result}/>} />
-          <Route path = "/login" element = {<Login />} />
+          <Route path = "/login" element = {<Login onUpdate = {updateLoggedInValue} loggedIn = {loggedIn}/>} />
           <Route path = "/login/register" element = {<Register />} />
           <Route path = "/library/bookdetails/:id" element = {<Bookdetails data = {result}/>} />
           <Route path = "/login/userhomepage/:id" element = {<UserHomePage />}/>

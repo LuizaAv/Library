@@ -2,4 +2,7 @@
 
 
 
-POST    http://localhost:3001/login
+
+
+
+POST    http://localhost:3001/register

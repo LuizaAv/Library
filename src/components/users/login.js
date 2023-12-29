@@ -1,14 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { BiShow } from "react-icons/bi";
 import { BiHide } from "react-icons/bi";
 import axios from "axios";
 
-export default function Login() {
+
+export default function Login({onUpdate, loggedIn}) {
+  const isLogged = loggedIn;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
+  const [userData, setUserData] = useState("");
+  const navigate = useNavigate();
+
+  console.log(isLogged)
+
+  useEffect(() => {
+    if(isLogged){
+      navigate(`/login/userhomepage/${userData.email}`)
+    }
+  }, [userData, isLogged])
 
   const handleEmail = (e) => {
     setEmail(e.target.value)
@@ -35,8 +47,11 @@ export default function Login() {
       const response = await axios.post("http://localhost:3001/login", {
         email,
         password,
+        loggedIn
       });
-      console.log(response.data); 
+      onUpdate(true);
+      setUserData(response.data.user);
+      console.log(response.data.user)
     } catch (error) {
       console.error("Login error:", error);
     }

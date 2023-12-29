@@ -76,11 +76,15 @@ export default function Main({data}) {
         <div className="recentAdditionContainer">
           <h1 className="recentAddH1">Recent Additions</h1>
           <AliceCarousel
+            infinite
+            autoPlay="true"
+            wrap="true"
+            autoPlayInterval={2000}
             mouseTracking
             items={show}
             responsive={responsive}
             controlsStrategy="alternate"
-            className =  "slide"
+            className="slide"
           />
         </div>
       </div>
