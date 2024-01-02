@@ -14,8 +14,6 @@ export default function Login({onUpdate, loggedIn}) {
   const [userData, setUserData] = useState("");
   const navigate = useNavigate();
 
-  console.log(isLogged)
-
   useEffect(() => {
     if(isLogged){
       navigate(`/login/userhomepage/${userData.email}`)
@@ -44,14 +42,13 @@ export default function Login({onUpdate, loggedIn}) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3001/login", {
+      const response = await axios.post("http://localhost:3001/users/login", {
         email,
-        password,
-        loggedIn
+        password
       });
       onUpdate(true);
+      console.log(response)
       setUserData(response.data.user);
-      console.log(response.data.user)
     } catch (error) {
       console.error("Login error:", error);
     }

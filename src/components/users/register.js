@@ -31,48 +31,24 @@ export default function Register() {
     }
   }, [successReg]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (
-      name !== "" &&
-      surname !== "" &&
-      email !== "" &&
-      mobile !== "" &&
-      wave !== "" &&
-      password !== "" &&
-      confirmPassword !== "" &&
-      !nameErr &&
-      !surnameErr &&
-      !emailErr &&
-      !passwordErr &&
-      !confirmPassErr
-    ) {
-      axios
-        .post("http://localhost:3001/register", {
-          name,
-          surname,
-          email,
-          mobile,
-          wave,
-          gender,
-          password,
-        })
-        .then((res) => {
-          console.log(res);
-          return res;
-        })
-        .then((res) => {
-          if (res.status === 201) {
-            setSuccessReg(true);
-            console.log("hi");
-          } else {
-            setSuccessReg(false);
-            setEmail("");
-            setPassword("");
-            setConfirmPassword("");
-          }
-        })
-        .catch((err) => console.log(err));
+    try {
+      const response = await axios.post("http://localhost:3001/users/register", {
+        name,
+        surname,
+        email,
+        password,
+        mobile, 
+        wave, 
+        gender
+      });
+      if (response.status === 201) {
+        setSuccessReg(true);  
+      }
+      console.log(response.data); // Handle the response as needed
+    } catch (error) {
+      console.error("Registration error:", error);
     }
   };
 

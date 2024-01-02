@@ -20,8 +20,8 @@ function App() {
       try{
         const response = await axios.get("http://localhost:3001/books");
         setResult(response.data)
-      }catch (err){
-        console.log("Handled error in fetching time: ",  err)
+      }catch (error){        
+        console.log("Handled error in fetching time: ",  error)
       }
     }
 
@@ -40,7 +40,7 @@ function App() {
           <Route path = "/about" element = {<Main data = {result} />} />
           <Route path = "/library" element = {<Library data = {result}/>} />
           <Route path = "/login" element = {<Login onUpdate = {updateLoggedInValue} loggedIn = {loggedIn}/>} />
-          <Route path = "/login/register" element = {<Register />} />
+          <Route path = "/login/register" element = {<Register loggedIn = {loggedIn} />} />
           <Route path = "/library/bookdetails/:id" element = {<Bookdetails data = {result}/>} />
           <Route path = "/login/userhomepage/:id" element = {<UserHomePage />}/>
         </Routes>

@@ -1,52 +1,63 @@
-const express = require("express");
-const UsersModel = require("../Schemas/Users");
+const bcrypt = require("bcrypt");
+const User = require("../models/User");
 
-const router = express.Router();
+exports.registerUser = async (req, res) => {
+  try {
+    const { name, surname, email, password, mobile, wave, gender } = req.body;
 
-router.post("/register", async (req, res) => {
-    try {
-        const existingUser = await UsersModel.findOne({ email: req.body.email });
-    
-        if (existingUser) {
-          return res.status(400).json({ message: "User with this email already exists" });
-        }
-    
-        const newUser = await UsersModel.create(req.body);
-        res.status(201).json(newUser);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
+    if (!name || !email || !password || !mobile || !wave || !gender) {
+      return res.status(400).json({ error: "All fields are required" });
     }
-});
 
-router.post("/login", async (req, res) => {
-    const { email, password , loggedIn} = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const user = new User({
+      name,
+      surname,
+      email,
+      password: hashedPassword,
+      mobile,
+      wave,
+      gender,
+    });
+
+    await user.save();
+
+    res.status(201).json({ message: "User registered successfully"});
+  } catch (error) {
+    console.error("Registration error:", error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+exports.loginUser = async (req, res) => {
+  const { email, password} = req.body;
 
     try {
-      const user = await UsersModel.findOne({ email });
-  
+      const user = await User.findOne({ email });
+      
       if (!user) {
         return res.status(401).json({ message: "Invalid credentials" });
       }
-  
-      if(!loggedIn){
-        if (user.password !== password) {
-          return res.status(401).json({ message: "Invalid credentials" });
-        }
-      }
-  
+      console.log(email, password, user.password)
+      const passwordMatch = await bcrypt.compare(password, user.password);
+      console.log(passwordMatch)
+    if (!passwordMatch) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
       res.status(200).json({ message: "Login successful", user });
     } catch (error) {
       res.status(500).json({ message: "Server error" });
     }
-});
+}
 
-router.get("/userHomePage", async (req, res) => {
-    try{
-        const users = await UsersModel.findOne();
-        res.json(users);
-    }catch (err){
-        res.status(500).json({message: err.message})
-    }
-});
-
-module.exports = router;
+exports.homePageUser = async(req, res) => {
+  const {email} = req.query
+  try{
+      const user = await User.findOne({ email });
+      console.log(user)
+      res.json(user);
+  }catch (err){
+      res.status(500).json({message: err.message})
+  }
+}

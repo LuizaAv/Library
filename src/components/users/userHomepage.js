@@ -7,17 +7,16 @@ import femalePic from "../../images/female.jpg";
 import malePic from "../../images/male.jpg"
 
 export default function UserHomePage(){
-    const [userData, setUserData] = useState(null);
+    const [userData, setUserData] = useState("");
     const location = useLocation();
     const email = location.pathname.slice(20);
     
     useEffect(() => {
         const fetchData = async (email) => {
             try {
-                const response = await axios.get("http://localhost:3001/userHomePage", {
+                const response = await axios.get(`http://localhost:3001/users/userHomePage?email=${email}`, {
                     email
                 });
-                console.log(response.data)
                 setUserData(response.data);
             } catch (error) {
             console.error("Login error:", error);
@@ -25,7 +24,7 @@ export default function UserHomePage(){
         }
     
         fetchData(email) 
-    }, [])
+    }, [email])
 
 
     return (

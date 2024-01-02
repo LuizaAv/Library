@@ -1,19 +1,28 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-
-const userController = require("./Controllers/userController");
-const bookController = require("./Controllers/bookController");
-
 const app = express();
-app.use(express.json());
+const PORT = process.env.PORT || 3001;
+const userRoutes = require("./routes/userRoutes");
+const bookRoutes = require('./routes/booksRoutes');
+
 app.use(cors());
+app.use(express.json());
 
-mongoose.connect("mongodb://127.0.0.1:27017/database");
+mongoose.connect("mongodb://127.0.0.1:27017/database", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
-app.use("/users", userController);
-app.use("/books", bookController);
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "MongoDB connection error:"));
+db.once("open", () => {
+  console.log("Connected to MongoDB");
+});
 
-app.listen(3001, () => {
-  console.log("Server started on port 3001");
+app.use("/users", userRoutes);
+app.use("/books", bookRoutes);
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
