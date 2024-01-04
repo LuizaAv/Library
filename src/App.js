@@ -13,8 +13,8 @@ import UserHomePage from './components/users/userHomepage';
 
 function App() {
   const [result, setResult] = useState([]);
-  const [loggedIn, setLoggedIn] = useState(false);
-
+  //const [loggedIn, setLoggedIn] = useState(false);
+  
   useEffect(() => {
     const fetchData = async () => {
       try{
@@ -29,18 +29,18 @@ function App() {
   }, [])
 
   const updateLoggedInValue = (value) => {
-      setLoggedIn(value)
+      localStorage.setItem("loggedIn", "true")
   }
 
   return (
     <div className="App">
-        <Navbar />
+        <Navbar/>
         <Routes>
           <Route path = "/" element = {<Main data = {result}/>} />
           <Route path = "/about" element = {<Main data = {result} />} />
           <Route path = "/library" element = {<Library data = {result}/>} />
-          <Route path = "/login" element = {<Login onUpdate = {updateLoggedInValue} loggedIn = {loggedIn}/>} />
-          <Route path = "/login/register" element = {<Register loggedIn = {loggedIn} />} />
+          <Route path = "/login" element = {<Login onUpdate={updateLoggedInValue}/>} />
+          <Route path = "/login/register" element = {<Register />} />
           <Route path = "/library/bookdetails/:id" element = {<Bookdetails data = {result}/>} />
           <Route path = "/login/userhomepage/:id" element = {<UserHomePage />}/>
         </Routes>

@@ -6,8 +6,8 @@ import { BiHide } from "react-icons/bi";
 import axios from "axios";
 
 
-export default function Login({onUpdate, loggedIn}) {
-  const isLogged = loggedIn;
+export default function Login({onUpdate}) {
+  const isLogged = localStorage.getItem("loggedIn")
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
@@ -46,13 +46,21 @@ export default function Login({onUpdate, loggedIn}) {
         email,
         password
       });
+  
+      const { user, token } = response.data; 
+      console.log(response.data)
       onUpdate(true);
-      console.log(response)
-      setUserData(response.data.user);
+      setUserData(user);
+  
+      localStorage.setItem('token', token);
+  
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  
     } catch (error) {
-      console.error("Login error:", error);
+      console.error("Login error:", error.response);
     }
   };
+
 
   return (
     <div className="loginContainer">

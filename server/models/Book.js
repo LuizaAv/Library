@@ -18,6 +18,9 @@ const bookSchema = new mongoose.Schema({
     published_year: {
         type: String,
         required: true
+    },
+    availability: {
+        type: Boolean
     }
 }, { collection: 'books' });
 

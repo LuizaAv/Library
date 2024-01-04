@@ -5,6 +5,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const userRoutes = require("./routes/userRoutes");
 const bookRoutes = require('./routes/booksRoutes');
+const loanRoutes = require("./routes/loanRoutes")
 
 app.use(cors());
 app.use(express.json());
@@ -22,6 +23,7 @@ db.once("open", () => {
 
 app.use("/users", userRoutes);
 app.use("/books", bookRoutes);
+app.use('/loans', loanRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

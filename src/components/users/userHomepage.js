@@ -1,31 +1,33 @@
 
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import "./userHomepage.css"
 import axios from "axios";
 import femalePic from "../../images/female.jpg";
 import malePic from "../../images/male.jpg"
 
+
 export default function UserHomePage(){
     const [userData, setUserData] = useState("");
-    const location = useLocation();
-    const email = location.pathname.slice(20);
+    //const location = useLocation();
+    //const email = location.pathname.slice(20);
     
     useEffect(() => {
-        const fetchData = async (email) => {
+        const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:3001/users/userHomePage?email=${email}`, {
-                    email
+                const token = localStorage.getItem('token'); 
+                const response = await axios.get("http://localhost:3001/users/userHomePage", {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
                 });
                 setUserData(response.data);
             } catch (error) {
-            console.error("Login error:", error);
+                console.error("Fetch data error:", error.response);
             }
         }
     
-        fetchData(email) 
-    }, [email])
-
+        fetchData();
+    }, []);
 
     return (
         <div >

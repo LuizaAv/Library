@@ -1,12 +1,17 @@
 import "./navbar.css"
 import logo from "../../images/logo.png"
 import { BsSearch } from "react-icons/bs"
-import { BsFillPersonFill } from "react-icons/bs";
+import { RiUserSharedLine } from "react-icons/ri";
+import { RiUserReceivedLine } from "react-icons/ri";
 import { Link } from "react-router-dom"
 
+const logout = () => {
+    localStorage.removeItem("loggedIn", "");
+    localStorage.removeItem("token", "")
+}
 
 export default function Navbar(){
-
+    const isLoggedIn = localStorage.getItem("loggedIn")
     return(
         <div className="navMainContainer">
             <div className="logoContainer">
@@ -24,11 +29,16 @@ export default function Navbar(){
                 <Link to = "/library" className="navbarLinks">
                     <BsSearch className="icons"/>
                 </Link>
+                {
+                    !isLoggedIn ?  <Link to = "/login" className="navbarLinks">
+                                    Login/Registration
+                                </Link>
+                            :   <Link to = "/login/userhomepage/:id" className="navbarLinks">
+                                    HomePage
+                                </Link>
+                }
                 <Link to = "/login" className="navbarLinks">
-                    Login/Registration
-                </Link>
-                <Link to = "/login" className="navbarLinks">
-                    <BsFillPersonFill className="icons"/>
+                    {isLoggedIn ? <RiUserSharedLine className="icons" onClick={logout}/> : <RiUserReceivedLine className="icons"/>}
                 </Link>
             </div>
         </div>
