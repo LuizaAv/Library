@@ -98,14 +98,12 @@
 .sliderPic{
     height: 100px;;
     width: 100px;
-    -webkit-filter: blur(1px);
     transition: 0.8s ease-out 200ms;
 }
 
 .item:hover .sliderPic{
     height: 110px;
     width: 110px;
-    -webkit-filter: blur(0px);
     transition: 0.8s ease-out 200ms;
 }
 

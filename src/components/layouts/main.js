@@ -25,7 +25,7 @@ export default function Main({data}) {
   };
 
   const show = element.map((item) => (
-    <div className="item" data-value="1">
+    <div className="item" data-value="1" key = {item.isbn}>
       <Link 
         to={{
             pathname: `/library/bookdetails/${item.isbn}`,
