@@ -2,7 +2,9 @@ import "./book.css";
 import book from "../../images/book2.png";
 
 export default function Book({ bookInfo }) {
-  
+  if (!bookInfo) {
+    return null; 
+  }
   return (
       <div className="bookContainer">
         <img src={book} className="book" alt="a book" />

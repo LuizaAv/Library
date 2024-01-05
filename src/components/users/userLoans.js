@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Book from '../partials/book';
+import AliceCarousel from "react-alice-carousel";
 import "./userLoans.css"
 
 export default function UserLoans({ userId, bookInfo }) {
@@ -27,25 +28,44 @@ export default function UserLoans({ userId, bookInfo }) {
     fetchUserLoans();
   }, [userId]);
 
+  const responsive = {
+    0: { items: 1 },
+    568: { items: 3 },
+    1024: { items: 5 },
+  };
+
   const returnDay = (new Date()).toISOString();
+
+  const show = userLoans.map((item) => {
+    const matchingBook = bookInfo.find((elem) => elem.isbn === item.book);
+
+    return (
+      <div key={item._id} className='loanBook' style = {item.return_date.slice(0,10) === returnDay.slice(0,10) ? {color: "red"} : null}>
+        <h4>Expire date: </h4>
+        <div>{item.return_date.slice(0, 10)}</div>
+        {matchingBook && (
+          <Book
+            key={item.book}
+            bookInfo={matchingBook}
+          />
+        )}
+      </div>
+    );
+  });
   
-  console.log(returnDay)
   return (
     <div className='userLoanMainContainer'>
       <h1>User's Borrowed Books</h1>
       <div className= "userLoansContainer">
-        {userLoans.map((item) => (
-          <div key={item._id} className='loanBook' style = {item.return_date.slice(0,10) === returnDay.slice(0,10) ? {color: "red"} : null}>
-            <h4>Expire date: </h4>
-            <div>{item.return_date.slice(0, 10)}</div>
-            {bookInfo.find((elem) => elem.isbn === item.book) && (
-              <Book
-                key={item.book}
-                bookInfo={bookInfo.find((elem) => elem.isbn === item.book)}
-              />
-            )}
-          </div>
-        ))}
+        <AliceCarousel
+          infinite
+          wrap="true"
+          mouseTracking
+          items={show}
+          responsive={responsive}
+          controlsStrategy="alternate"
+          className="slide"
+        />
       </div>
     </div>
   );

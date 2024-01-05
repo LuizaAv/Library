@@ -45,7 +45,7 @@ export default function UserHomePage({booksData}){
                         <img src = {userData.gender === "Female" ? femalePic : malePic} className="avatar"/>
                     </div>
                     <div className="infoContainer">
-                        <h2>{`${userData.name}  ${userData.surname}`}</h2>
+                        <h1>{`${userData.name}  ${userData.surname}`}</h1>
                         <h3>{userData.wave}</h3>
                     </div>
                 </div>
