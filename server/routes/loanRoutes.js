@@ -5,5 +5,6 @@ const loanController = require("../controllers/loanController");
 
 router.post('/', authenticateToken, loanController.createLoan);
 
-module.exports = router;
+router.get('/', authenticateToken, loanController.getUserLoans);
 
+module.exports = router;

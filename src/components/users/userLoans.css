@@ -1,0 +1,19 @@
+.userLoansContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+    width: 95%;
+    height: 30vh;
+    color: #ffffff;
+}
+
+.loanBook{
+    padding: 4%;
+}
+
+.userLoanMainContainer h1{
+    margin-left: 35%;
+    color: #ffffff;
+}

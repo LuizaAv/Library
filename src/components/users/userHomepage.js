@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 import "./userHomepage.css"
 import axios from "axios";
 import femalePic from "../../images/female.jpg";
-import malePic from "../../images/male.jpg"
+import malePic from "../../images/male.jpg";
+import UserLoans from "./userLoans";
 
 
-export default function UserHomePage(){
+export default function UserHomePage({booksData}){
+    const books = booksData;
     const [userData, setUserData] = useState("");
-    //const location = useLocation();
-    //const email = location.pathname.slice(20);
+    const [userId, setUserId] = useState(""); 
     
     useEffect(() => {
         const fetchData = async () => {
@@ -20,7 +21,12 @@ export default function UserHomePage(){
                         Authorization: `Bearer ${token}`
                     }
                 });
+                
                 setUserData(response.data);
+
+                if (response.data && response.data._id) {
+                    setUserId(response.data._id); 
+                }
             } catch (error) {
                 console.error("Fetch data error:", error.response);
             }
@@ -30,7 +36,7 @@ export default function UserHomePage(){
     }, []);
 
     return (
-        <div >
+        <div className = "container">
             {
                 userData ? 
                 (
@@ -41,13 +47,12 @@ export default function UserHomePage(){
                     <div className="infoContainer">
                         <h2>{`${userData.name}  ${userData.surname}`}</h2>
                         <h3>{userData.wave}</h3>
-                        <h4>Borrowed books: </h4>
-                        <h4>Expire date: </h4>
                     </div>
                 </div>
                 )
                 : <div>...Loading</div>
             }
+            <UserLoans userId={userId} bookInfo = {books}/>
         </div>
     )
 }

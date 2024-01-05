@@ -1,4 +1,3 @@
-import './App.css';
 import { Routes, Route} from "react-router-dom";
 import { useEffect, useState } from 'react';
 import axios from "axios";
@@ -13,7 +12,6 @@ import UserHomePage from './components/users/userHomepage';
 
 function App() {
   const [result, setResult] = useState([]);
-  //const [loggedIn, setLoggedIn] = useState(false);
   
   useEffect(() => {
     const fetchData = async () => {
@@ -42,7 +40,7 @@ function App() {
           <Route path = "/login" element = {<Login onUpdate={updateLoggedInValue}/>} />
           <Route path = "/login/register" element = {<Register />} />
           <Route path = "/library/bookdetails/:id" element = {<Bookdetails data = {result}/>} />
-          <Route path = "/login/userhomepage/:id" element = {<UserHomePage />}/>
+          <Route path = "/login/userhomepage/:id" element = {<UserHomePage booksData = {result} />}/>
         </Routes>
         <Footer className="footerInApp"/>
     </div>
