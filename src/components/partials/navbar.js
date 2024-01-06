@@ -15,7 +15,7 @@ export default function Navbar(){
     return(
         <div className="navMainContainer">
             <div className="logoContainer">
-                <Link to = "/">
+                <Link to = "/" >
                     <img className = "logo" src = {logo} alt = "Logo" />
                 </Link>
             </div>
@@ -23,7 +23,7 @@ export default function Navbar(){
                 <Link to = "/" className="navbarLinks">
                     Home
                 </Link>
-                <Link to = "/library" className="navbarLinks">
+                <Link to = "/library" className="navbarLinks" rel="icon" type="image/png" sizes="32x32" href="../../images/picsart_academy_logo.jpg">
                     Dibrary
                 </Link>
                 <Link to = "/library" className="navbarLinks">

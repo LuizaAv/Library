@@ -10,7 +10,8 @@ import UserLoans from "./userLoans";
 export default function UserHomePage({booksData}){
     const books = booksData;
     const [userData, setUserData] = useState("");
-    const [userId, setUserId] = useState(""); 
+    const [userId, setUserId] = useState("");
+    const [show, setShow] = useState(false)
     
     useEffect(() => {
         const fetchData = async () => {
@@ -27,6 +28,8 @@ export default function UserHomePage({booksData}){
                 if (response.data && response.data._id) {
                     setUserId(response.data._id); 
                 }
+
+                response.data.role === "admin" ? setShow(true) : setShow(false)
             } catch (error) {
                 console.error("Fetch data error:", error.response);
             }
@@ -48,6 +51,9 @@ export default function UserHomePage({booksData}){
                         <h1>{`${userData.name}  ${userData.surname}`}</h1>
                         <h3>{userData.wave}</h3>
                     </div>
+                    <button className={show ? "show" : "hidden"}>
+                        Black list
+                    </button>
                 </div>
                 )
                 : <div>...Loading</div>

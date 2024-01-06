@@ -42,12 +42,11 @@ export default function Bookdetails({ data }) {
     if (loggedIn) {
       if (book.availability) {
         try {
-          const userId = "65942f9f9c61cd85fb34799b";
           const bookId = id;
 
           const response = await axios.post(
             "http://localhost:3001/loans",
-            { userId, bookId },
+            { bookId },
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -55,8 +54,6 @@ export default function Bookdetails({ data }) {
             }
           );
           console.log(response);
-          // Handle successful loan creation (update user's profile, etc.)
-          // ... (update user's profile with loan details)
         } catch (error) {
           console.error("Error borrowing book:", error);
         }

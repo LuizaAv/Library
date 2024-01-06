@@ -91,7 +91,6 @@ export default function Login({onUpdate}) {
       </form>
       <Link to="/login/register" target="_blank" className="loginLink">
         <div className="switchToReg">
-          <div>Do you forget password?</div>
           <div>Switch to registration</div>
         </div>
       </Link>

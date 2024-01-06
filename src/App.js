@@ -9,6 +9,7 @@ import Register from './components/users/register';
 import Footer from './components/partials/footer';
 import Bookdetails from './components/partials/bookdetails';
 import UserHomePage from './components/users/userHomepage';
+import ScrollToTop from "./ScrollToTop";
 
 function App() {
   const [result, setResult] = useState([]);
@@ -33,6 +34,7 @@ function App() {
   return (
     <div className="App">
         <Navbar/>
+        <ScrollToTop />
         <Routes>
           <Route path = "/" element = {<Main data = {result}/>} />
           <Route path = "/about" element = {<Main data = {result} />} />

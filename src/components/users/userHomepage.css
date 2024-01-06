@@ -34,3 +34,16 @@
     color: transparent;
 }
 
+.show{
+    height: 40px;
+    width: 200px;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    margin-top: 2%;
+    margin-left: 5%;
+}
+
+.hidden{
+    visibility: hidden;
+}

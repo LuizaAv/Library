@@ -4,8 +4,8 @@ const Loan = require('../models/Loan');
 
 exports.createLoan = async (req, res) => {
   try {
-    const { userId, bookId } = req.body;
-
+    const { bookId } = req.body;
+    const userId = req.user.id;
     const book = await Book.findOne({ isbn: bookId });
     
     if (!book || !book.availability) {

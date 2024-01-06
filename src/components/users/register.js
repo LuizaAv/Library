@@ -23,13 +23,14 @@ export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [confirmPassErr, setConfirmPassErr] = useState(false);
   const [successReg, setSuccessReg] = useState("");
+  const [showPopup, setShowPopup] = useState(false); 
   const navigate = useNavigate();
 
   useEffect(() => {
     if (successReg) {
-      navigate(`/login/userhomepage/${email}`);
+      setShowPopup(true);
     }
-  }, [successReg]);
+  }, [showPopup, successReg]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,7 +47,6 @@ export default function Register() {
       if (response.status === 201) {
         setSuccessReg(true);  
       }
-      console.log(response.data); // Handle the response as needed
     } catch (error) {
       console.error("Registration error:", error);
     }
@@ -124,6 +124,11 @@ export default function Register() {
     } else {
       setConfirmPassErr("The input doesn't match with password");
     }
+  };
+
+  const closePopup = () => {
+    setShowPopup(false); 
+    navigate(`/login`); 
   };
 
   return (
@@ -216,6 +221,14 @@ export default function Register() {
         />
         {confirmPassErr && <div className="errorReg">{confirmPassErr}</div>}
         <input type="submit" value="Submit" className="registrationSubmit" />
+        {showPopup && ( 
+          <div className="popup">
+            <div className="popup-content">
+              <p>Registration Successful!</p>
+              <button onClick={closePopup}>Close</button>
+            </div>
+          </div>
+        )}
         <Link to="/login" target="_blank" className="registerLink">
           Have you already an account?
         </Link>

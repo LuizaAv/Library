@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const generateToken = (user) => {
   const payload = {
+    userId: user.id,
     email: user.email,
     role: user.role,
     name: user.name,
@@ -11,7 +12,6 @@ const generateToken = (user) => {
     wave: user.wave,
     gender: user.gender,
     password: user.password
-    // Add more data as needed for authorization
   };
 
   const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '24h' });
@@ -42,7 +42,8 @@ const authenticateToken = (req, res, next) => {
       return res.status(403).json({ message: 'Invalid or expired token' });
     }
   
-    req.user = decoded;
+    req.user = { ...decoded };
+    req.user.id = decoded.userId; 
     next();
 };
 
