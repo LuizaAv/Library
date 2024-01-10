@@ -55,3 +55,19 @@
 .icons:hover{
     color: #000000;
 }
+
+@media (min-width: 768px) and (max-width: 1024px){
+    .navbarLinks{
+        margin-left: 5%;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .linkContainer{
+        margin-right: 10%;
+    }
+
+    .logoContainer{
+        width: 25%;
+    }
+}

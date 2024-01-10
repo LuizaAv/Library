@@ -5,6 +5,7 @@ import axios from "axios";
 import femalePic from "../../images/female.jpg";
 import malePic from "../../images/male.jpg";
 import UserLoans from "./userLoans";
+import AdminPage from "./adminPage";
 
 
 export default function UserHomePage({booksData}){
@@ -44,21 +45,25 @@ export default function UserHomePage({booksData}){
                 userData ? 
                 (
                 <div className="userHomeContainer">
-                    <div className="avatarContainer">
-                        <img src = {userData.gender === "Female" ? femalePic : malePic} className="avatar"/>
+                    <div className = "userHome">
+                        <div className="avatarContainer">
+                            <img src = {userData.gender === "Female" ? femalePic : malePic} className="avatar"/>
+                        </div>
+                        <div className="infoContainer">
+                            <h1>{`${userData.name}  ${userData.surname}`}</h1>
+                            <h3>{userData.wave}</h3>
+                        </div>
                     </div>
-                    <div className="infoContainer">
-                        <h1>{`${userData.name}  ${userData.surname}`}</h1>
-                        <h3>{userData.wave}</h3>
+                    <div>
+                        <AdminPage className={show ? "show" : "hidden"}/>
                     </div>
-                    <button className={show ? "show" : "hidden"}>
-                        Black list
-                    </button>
                 </div>
                 )
                 : <div>...Loading</div>
             }
-            <UserLoans userId={userId} bookInfo = {books}/>
+            <div className={show ? "hidden" : null}>
+                <UserLoans userId={userId} bookInfo = {books} />
+            </div>
         </div>
     )
 }

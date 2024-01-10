@@ -15,7 +15,7 @@ exports.registerUser = async (req, res) => {
     let role = 'user'; 
 
     if (email === 'l.avetisyan7777@gmail.com') {
-      role = 'admin'; 
+      role = 'admin';
     }
 
     const user = new User({
@@ -66,7 +66,6 @@ exports.loginUser = async (req, res) => {
 }
 
 exports.homePageUser = async (req, res) => {
-  console.log(req.user)
   try {
     const { email } = req.user; // Assuming the token payload contains the user's email
 

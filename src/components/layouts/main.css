@@ -1,17 +1,14 @@
-
-
-
 .libraryPic{
     opacity: 0.5;
     height: 100%;
-    width: 100%;
+    width: 105%;
+    background-size: contain;
 }
 
 .mainComponentContainer{
     position: relative;
     width: 100%;
     min-height: 100vh;
-    background-size: contain;
     margin-bottom: 40%;
 }
 
@@ -109,4 +106,26 @@
 
 .slide{
     color: #ffffff;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .libraryPic{
+        height: 120vh;
+    }
+
+    .mainComponentContainer{
+        min-height: 140vh;
+    }
+
+    .contentContainerOfMain h1{
+        font-size: 26px;
+    }
+
+    .recentAdditionContainer h1{
+        font-size: 26px;
+    }
+    
+    .viewMoreBtn{
+        margin-top: 12%;
+    }
 }

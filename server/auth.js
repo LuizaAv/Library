@@ -29,7 +29,6 @@ const verifyToken = (token) => {
 
 const authenticateToken = (req, res, next) => {
     const token = req.headers['authorization'];
-    console.log('Token from header:', token); 
     
     if (!token) {
       return res.status(401).json({ message: 'Authentication token missing' });

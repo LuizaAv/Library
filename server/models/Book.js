@@ -3,24 +3,38 @@ const mongoose = require('mongoose');
 const bookSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: true
+        //required: true
     },
     authors: [
         {
             type: String,
-            required: true
+           // required: true
         }
     ],
     isbn: {
         type: String,
-        required: true
+        ///required: true
     },
     published_year: {
         type: String,
-        required: true
+        //required: true
     },
+    category:[
+        {
+            type: String
+        }
+    ],
     availability: {
         type: Boolean
+    },
+    location: {
+        shelf: String,
+        row: Number
+    },
+    additional_info: {
+        publisher: String,
+        language: String,
+        page_count: Number
     }
 }, { collection: 'books' });
 

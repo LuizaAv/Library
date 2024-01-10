@@ -5,5 +5,5 @@
 
 
 
-GET   http://localhost:3001/loans/65942f9f9c61cd85fb34799b
+POST   http://localhost:3001/books"
 

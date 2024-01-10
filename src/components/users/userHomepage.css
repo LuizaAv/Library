@@ -8,7 +8,7 @@
 
 .userHomeContainer{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 90%;
     margin: auto;
     margin-top: 15%;
@@ -22,6 +22,10 @@
     height: 200px;
     width: 200px;
     border-radius: 100px;
+}
+
+.userHome{
+    display: flex;
 }
 
 .infoContainer{

@@ -79,7 +79,7 @@ export default function Main({data}) {
             infinite
             autoPlay="true"
             wrap="true"
-            autoPlayInterval={2000}
+            autoPlayInterval={3000}
             mouseTracking
             items={show}
             responsive={responsive}

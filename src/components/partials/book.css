@@ -53,3 +53,41 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .bookContainer{
+        position: relative;
+        height: 150px;
+        width: 150px;
+        border-radius: 20px;
+        background-color: #ffffff;
+        font-size: 12px;
+    }
+
+    .book{
+        height: 120px;
+        width: 120px;
+        margin-top: 3%;
+        margin-left: 3%;
+        transition: 0.4s ease-out 100ms;
+    }
+}
+
+@media (max-width: 767px){
+    .bookContainer{
+        position: relative;
+        height: 130px;
+        width: 130px;
+        border-radius: 20px;
+        background-color: #ffffff;
+        font-size: 12px;
+    }
+
+    .book{
+        height: 100px;
+        width: 100px;
+        margin-top: 3%;
+        margin-left: 3%;
+        transition: 0.4s ease-out 100ms;
+    }
+}

@@ -16,8 +16,8 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [emailErr, setEmailErr] = useState(false);
   const [mobile, setMobile] = useState("");
-  const [wave, setWave] = useState("Wave 6");
-  const [gender, setGender] = useState("Female");
+  const [wave, setWave] = useState("");
+  const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
   const [passwordErr, setPasswordErr] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -176,13 +176,14 @@ export default function Register() {
           onChange={handleMobile}
           className="registrationInputs"
         />
-        <label>Choose the Wave</label>
+        <label>Choose the Group</label>
         <select
           name="Waves"
           className="registrationSelect"
-          value={wave}
+          value="default"
           onChange={handleWave}
         >
+          <option value="default" disabled>Select a Group</option>
           <option value="Wave 6">Wave 6</option>
           <option value="Wave 5">Wave 5</option>
           <option value="Wave 4">Wave 4</option>
@@ -196,9 +197,10 @@ export default function Register() {
         <select
           name="Gender"
           className="registrationSelect"
-          value={gender}
+          value="default"
           onChange={handleGender}
         >
+          <option value="default" disabled>Select a gender</option>
           <option value="Wave 6">Female</option>
           <option value="Wave 5">Male</option>
         </select>

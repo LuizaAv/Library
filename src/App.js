@@ -10,6 +10,7 @@ import Footer from './components/partials/footer';
 import Bookdetails from './components/partials/bookdetails';
 import UserHomePage from './components/users/userHomepage';
 import ScrollToTop from "./ScrollToTop";
+import "./App.css"
 
 function App() {
   const [result, setResult] = useState([]);

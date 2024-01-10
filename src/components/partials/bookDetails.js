@@ -12,13 +12,14 @@ export default function Bookdetails({ data }) {
   const res = data;
   const [text, setText] = useState("");
   const [check, setCheck] = useState(false);
+  //const [success, setSuccess] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const id = location.pathname.slice(21, location.pathname.length);
   const book = res ? res.find((elem) => elem.isbn === id) : null;
 
   const relatedBooks = res.filter((elem) =>
-    elem.category.some((item) => book.category.includes(item))
+    elem.category.some((item) => (elem.isbn !== id && book.category.includes(item)))
   );
 
   const genAI = new GoogleGenerativeAI(
@@ -53,6 +54,9 @@ export default function Bookdetails({ data }) {
               },
             }
           );
+          // if(response.ok === 201){
+          //   setSuccess(true)
+          // }
           console.log(response);
         } catch (error) {
           console.error("Error borrowing book:", error);
