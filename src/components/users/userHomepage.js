@@ -12,7 +12,7 @@ export default function UserHomePage({booksData}){
     const books = booksData;
     const [userData, setUserData] = useState("");
     const [userId, setUserId] = useState("");
-    const [show, setShow] = useState(false)
+    // const [show, setShow] = useState(false)
     
     useEffect(() => {
         const fetchData = async () => {
@@ -25,12 +25,12 @@ export default function UserHomePage({booksData}){
                 });
                 
                 setUserData(response.data);
-
+                
                 if (response.data && response.data._id) {
                     setUserId(response.data._id); 
                 }
 
-                response.data.role === "admin" ? setShow(true) : setShow(false)
+                // response.data.role === "admin" ? setShow(true) : setShow(false)
             } catch (error) {
                 console.error("Fetch data error:", error.response);
             }
@@ -54,14 +54,14 @@ export default function UserHomePage({booksData}){
                             <h3>{userData.wave}</h3>
                         </div>
                     </div>
-                    <div>
-                        <AdminPage className={show ? "show" : "hidden"}/>
-                    </div>
+                    {
+                        userData.role === "admin" ? <AdminPage /> :null
+                    }
                 </div>
                 )
                 : <div>...Loading</div>
             }
-            <div className={show ? "hidden" : null}>
+            <div className={userData.role === "admin" ? "hidden" : null}>
                 <UserLoans userId={userId} bookInfo = {books} />
             </div>
         </div>

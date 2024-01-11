@@ -1,9 +1,14 @@
 const bcrypt = require("bcrypt");
+const axios = require('axios');
 const User = require("../models/User");
 const { generateToken } = require("../auth.js");
 
+
+const admin = ["l.avetisyan7777@gmail.com"]
+
 exports.registerUser = async (req, res) => {
   try {
+
     const { name, surname, email, password, mobile, wave, gender } = req.body;
 
     if (!name || !surname || !email || !password || !mobile || !wave || !gender) {
@@ -12,11 +17,7 @@ exports.registerUser = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    let role = 'user'; 
-
-    if (email === 'l.avetisyan7777@gmail.com') {
-      role = 'admin';
-    }
+    let role = 'user';
 
     const user = new User({
       role,
@@ -54,10 +55,8 @@ exports.loginUser = async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    // Generate token upon successful login
     const token = generateToken(user);
 
-    // Send user data and token in a single response
     res.status(200).json({ message: 'Login successful', user, token });
 
   } catch (error) {
@@ -67,7 +66,7 @@ exports.loginUser = async (req, res) => {
 
 exports.homePageUser = async (req, res) => {
   try {
-    const { email } = req.user; // Assuming the token payload contains the user's email
+    const { email } = req.user; 
 
     const user = await User.findOne({ email });
     
@@ -81,3 +80,24 @@ exports.homePageUser = async (req, res) => {
   }
 };
 
+exports.findExpiredDateUsers = async (req, res) => {
+  try {
+    console.log('Received Request Body:', req.body);
+
+    const expiredUserIds = req.body.expiredUserId;
+
+    if (Array.isArray(expiredUserIds) && expiredUserIds.length > 0) {
+      // Use _id field to match against MongoDB ObjectId strings
+      const users = await User.find({ _id: { $in: expiredUserIds } });
+
+      console.log('Found Users:', users);
+      res.status(200).json(users);
+    } else {
+      console.error('Expired user IDs not provided or not an array');
+      res.status(400).json({ message: 'Invalid input' });
+    }
+  } catch (error) {
+    console.log('Find expiredDate users: ', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+}

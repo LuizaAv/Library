@@ -7,12 +7,13 @@ import pictureBook from "../../images/book2.png"
 import axios from "axios";
 import "./bookdetails.css";
 import { useState } from "react";
+import Popup from "../users/popup";
 
 export default function Bookdetails({ data }) {
   const res = data;
   const [text, setText] = useState("");
   const [check, setCheck] = useState(false);
-  //const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const id = location.pathname.slice(21, location.pathname.length);
@@ -54,10 +55,11 @@ export default function Bookdetails({ data }) {
               },
             }
           );
-          // if(response.ok === 201){
-          //   setSuccess(true)
-          // }
-          console.log(response);
+          
+          if(response.status === 201){
+            setSuccess(true)
+          }
+
         } catch (error) {
           console.error("Error borrowing book:", error);
         }
@@ -93,6 +95,10 @@ export default function Bookdetails({ data }) {
     </div>
   ))
 
+  const closePopup = () => {
+    setSuccess(false)
+  }
+
   return (
     <div>
       {!book ? (
@@ -124,6 +130,11 @@ export default function Bookdetails({ data }) {
               <button className="bookDetailsBtn" onClick={handleBorrow}>
                 Borrow
               </button>
+              {
+                success && (
+                  <Popup popUp = {closePopup} textMessage = "Book was borrowed!"/>
+                )
+              }
             </div>
           </div>
         </div>

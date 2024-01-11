@@ -1,8 +1,6 @@
 const Book = require('../models/Book');
 
 
-
-
 exports.getAllBooks = async (req, res) => {
   try {
     const books = await Book.find({});
@@ -11,6 +9,7 @@ exports.getAllBooks = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
 
 exports.deleteBook = async (req, res) => {
   const { isbn } = req.body;
@@ -27,8 +26,8 @@ exports.deleteBook = async (req, res) => {
   }
 }
 
+
 exports.addBook = async (req, res) => {
-  console.log('hi');
   const {
     title,
     authors,
@@ -40,7 +39,6 @@ exports.addBook = async (req, res) => {
     additional_info
   } = req.body;
  
-  console.log(req.body.title)
   try {
     const newBook = new Book({
       title,

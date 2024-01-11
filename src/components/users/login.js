@@ -48,7 +48,7 @@ export default function Login({onUpdate}) {
       });
   
       const { user, token } = response.data; 
-      console.log(response.data)
+      
       onUpdate(true);
       setUserData(user);
   

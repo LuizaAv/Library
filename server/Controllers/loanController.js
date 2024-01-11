@@ -45,3 +45,15 @@ exports.getUserLoans = async (req, res) => {
     return res.status(500).json({ message: 'Internal server error' });
   }
 };
+
+exports.expiredLoans = async (req, res) => {
+  try {
+    const currentDate = new Date();
+    const expiredLoans = await Loan.find({ return_date: { $lt: currentDate } });
+
+    res.status(200).json(expiredLoans);
+  } catch (error) {
+    console.error('Error fetching expired loans:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+}

@@ -7,6 +7,7 @@ import {
   validationOfNameSurname,
   validationOfPassword,
 } from "./regValidations";
+import Popup from "./popup";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -34,6 +35,7 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const response = await axios.post("http://localhost:3001/users/register", {
         name,
@@ -130,7 +132,7 @@ export default function Register() {
     setShowPopup(false); 
     navigate(`/login`); 
   };
-
+  
   return (
     <div className="registrationContainer">
       <h1>Registration form</h1>
@@ -224,12 +226,7 @@ export default function Register() {
         {confirmPassErr && <div className="errorReg">{confirmPassErr}</div>}
         <input type="submit" value="Submit" className="registrationSubmit" />
         {showPopup && ( 
-          <div className="popup">
-            <div className="popup-content">
-              <p>Registration Successful!</p>
-              <button onClick={closePopup}>Close</button>
-            </div>
-          </div>
+          <Popup popUp = {closePopup} textMessage = "Registration Successful!" />
         )}
         <Link to="/login" target="_blank" className="registerLink">
           Have you already an account?
