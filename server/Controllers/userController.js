@@ -1,11 +1,11 @@
 const bcrypt = require("bcrypt");
-const axios = require('axios');
 const User = require("../models/User");
 const { generateToken } = require("../auth.js");
 
 
 const admin = ["l.avetisyan7777@gmail.com"]
 
+//user Registration Controller
 exports.registerUser = async (req, res) => {
   try {
 
@@ -39,6 +39,7 @@ exports.registerUser = async (req, res) => {
   }
 };
 
+//user Login Controller
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
 
@@ -64,6 +65,7 @@ exports.loginUser = async (req, res) => {
   }
 }
 
+//homePage information found by email and send it back to front end
 exports.homePageUser = async (req, res) => {
   try {
     const { email } = req.user; 
@@ -80,24 +82,19 @@ exports.homePageUser = async (req, res) => {
   }
 };
 
+//function to find the users whose book loan date were expired by expiredUserId s and send it back to front end
 exports.findExpiredDateUsers = async (req, res) => {
   try {
-    console.log('Received Request Body:', req.body);
-
     const expiredUserIds = req.body.expiredUserId;
 
     if (Array.isArray(expiredUserIds) && expiredUserIds.length > 0) {
-      // Use _id field to match against MongoDB ObjectId strings
       const users = await User.find({ _id: { $in: expiredUserIds } });
 
-      console.log('Found Users:', users);
       res.status(200).json(users);
     } else {
-      console.error('Expired user IDs not provided or not an array');
       res.status(400).json({ message: 'Invalid input' });
     }
   } catch (error) {
-    console.log('Find expiredDate users: ', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 }

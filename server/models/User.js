@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+//here I define User Schema
 const userSchema = new mongoose.Schema({
   role: {
     type: String,

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+//here I define Loan Schema
 const loanSchema = new mongoose.Schema({
   user: {
     type: String,

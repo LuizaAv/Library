@@ -1,6 +1,6 @@
 const Book = require('../models/Book');
 
-
+//function which get all books from db and send it to front end
 exports.getAllBooks = async (req, res) => {
   try {
     const books = await Book.find({});
@@ -10,7 +10,7 @@ exports.getAllBooks = async (req, res) => {
   }
 };
 
-
+//function which recieves isbn code of book, find that book in db and delete it
 exports.deleteBook = async (req, res) => {
   const { isbn } = req.body;
 
@@ -26,7 +26,7 @@ exports.deleteBook = async (req, res) => {
   }
 }
 
-
+//function which recieves from front and all properties of book object and add it in db
 exports.addBook = async (req, res) => {
   const {
     title,

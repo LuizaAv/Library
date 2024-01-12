@@ -1,7 +1,7 @@
 const Book = require('../models/Book');
 const Loan = require('../models/Loan');
-;
 
+//function which creates a loan for users in db recieving user id and book id from frontend and set borrowd and returned dates
 exports.createLoan = async (req, res) => {
   try {
     const { bookId } = req.body;
@@ -32,7 +32,7 @@ exports.createLoan = async (req, res) => {
   }
 };
 
-
+//function which  recieves userid from front end and find all loans of that user and send it back to front end
 exports.getUserLoans = async (req, res) => {
   try {
     const userId = req.query.userId; 
@@ -46,6 +46,7 @@ exports.getUserLoans = async (req, res) => {
   }
 };
 
+//function which find all loans whose date were expired and return them to front end
 exports.expiredLoans = async (req, res) => {
   try {
     const currentDate = new Date();
