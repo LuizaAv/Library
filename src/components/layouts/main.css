@@ -1,0 +1,140 @@
+.libraryPic {
+  opacity: 0.5;
+  height: 100%;
+  width: 105%;
+  background-size: contain;
+}
+
+.mainComponentContainer {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  margin-bottom: 40%;
+}
+
+.contentContainerOfMain {
+  position: absolute;
+  top: 15%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  color: #ffffff;
+  padding: 20px;
+}
+
+.contentContainerOfMain h1 {
+  margin: auto;
+}
+
+.booksRange {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: auto;
+  margin-top: 5%;
+  justify-content: space-between;
+}
+
+.aRange {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 8%;
+  transition: 0.8s ease-out 200ms;
+}
+
+.viewMoreBtn {
+  margin: auto;
+  margin-left: 25%;
+  margin-top: 5%;
+  height: 40px;
+  width: 50%;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  background-color: #fc9af6;
+  color: #ffffff;
+  font-weight: 800;
+  transition: 0.8s ease-out 200ms;
+}
+
+.viewMoreBtn:hover {
+  background-color: #ffffff;
+  color: #c209c1;
+  transition: 0.8s ease-out 200ms;
+}
+
+.recentAdditionContainer {
+  margin: auto;
+  margin-top: 10%;
+  width: 80%;
+}
+
+.recentAdditionContainer h1 {
+  margin-left: 38%;
+  margin-bottom: 3%;
+  background-image: linear-gradient(
+    to left,
+    rgb(13, 4, 153),
+    rgb(6, 129, 245),
+    rgb(136, 208, 230),
+    blue,
+    rgb(156, 7, 156),
+    rgb(55, 13, 241),
+    rgb(173, 8, 91)
+  );
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.item {
+  margin: auto;
+  height: 200px;
+  width: 100px;
+}
+
+.item div {
+  position: absolute;
+  font-size: 12px;
+}
+
+.sliderPic {
+  height: 100px;
+  width: 100px;
+  transition: 0.8s ease-out 200ms;
+}
+
+.item:hover .sliderPic {
+  height: 110px;
+  width: 110px;
+  transition: 0.8s ease-out 200ms;
+}
+
+.slide {
+  color: #ffffff;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .libraryPic {
+    height: 120vh;
+  }
+
+  .mainComponentContainer {
+    min-height: 140vh;
+  }
+
+  .contentContainerOfMain h1 {
+    font-size: 26px;
+  }
+
+  .recentAdditionContainer h1 {
+    font-size: 26px;
+  }
+
+  .viewMoreBtn {
+    margin-top: 12%;
+  }
+}
