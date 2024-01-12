@@ -1,93 +1,91 @@
-
-
-.bookContainer{
-    position: relative;
-    height: 200px;
-    width: 200px;
-    border-radius: 20px;
-    background-color: #ffffff;
-    font-size: 12px;
+.bookContainer {
+  position: relative;
+  height: 200px;
+  width: 200px;
+  border-radius: 20px;
+  background-color: #ffffff;
+  font-size: 12px;
 }
 
-.overlay{
-    position: absolute; 
-    bottom: 0; 
-    background: rgb(0, 0, 0);
-    background: rgba(0, 0, 0, 0.5);
-    color: #f1f1f1; 
-    width: 80%;
-    border-radius: 0px 0px 20px 20px;
-    transition: 0.5s ease;
-    opacity:0;
-    color: white;
-    padding: 20px;
-    text-align: center;
+.overlay {
+  position: absolute;
+  bottom: 0;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  width: 80%;
+  border-radius: 0px 0px 20px 20px;
+  transition: 0.5s ease;
+  opacity: 0;
+  color: white;
+  padding: 20px;
+  text-align: center;
 }
 
-.bookContainer:hover .overlay{
-    opacity: 1;
+.bookContainer:hover .overlay {
+  opacity: 1;
 }
 
-.bookContainer:hover .book{
-    -webkit-filter: blur(1px);
+.bookContainer:hover .book {
+  -webkit-filter: blur(1px);
 }
 
-.book{
-    height: 170px;
-    width: 170px;
-    margin-top: 3%;
-    margin-left: 3%;
-    transition: 0.4s ease-out 100ms;
+.book {
+  height: 170px;
+  width: 170px;
+  margin-top: 3%;
+  margin-left: 3%;
+  transition: 0.4s ease-out 100ms;
 }
 
-.description{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20%;
+.description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20%;
 }
 
-.aBooksLink{
-    text-decoration: none;
-    color: #ffffff;
-    margin-left: auto;
-    margin-right: auto;
+.aBooksLink {
+  text-decoration: none;
+  color: #ffffff;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-    .bookContainer{
-        position: relative;
-        height: 150px;
-        width: 150px;
-        border-radius: 20px;
-        background-color: #ffffff;
-        font-size: 12px;
-    }
+  .bookContainer {
+    position: relative;
+    height: 150px;
+    width: 150px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    font-size: 12px;
+  }
 
-    .book{
-        height: 120px;
-        width: 120px;
-        margin-top: 3%;
-        margin-left: 3%;
-        transition: 0.4s ease-out 100ms;
-    }
+  .book {
+    height: 120px;
+    width: 120px;
+    margin-top: 3%;
+    margin-left: 3%;
+    transition: 0.4s ease-out 100ms;
+  }
 }
 
-@media (max-width: 767px){
-    .bookContainer{
-        position: relative;
-        height: 130px;
-        width: 130px;
-        border-radius: 20px;
-        background-color: #ffffff;
-        font-size: 12px;
-    }
+@media (max-width: 767px) {
+  .bookContainer {
+    position: relative;
+    height: 130px;
+    width: 130px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    font-size: 12px;
+  }
 
-    .book{
-        height: 100px;
-        width: 100px;
-        margin-top: 3%;
-        margin-left: 3%;
-        transition: 0.4s ease-out 100ms;
-    }
+  .book {
+    height: 100px;
+    width: 100px;
+    margin-top: 3%;
+    margin-left: 3%;
+    transition: 0.4s ease-out 100ms;
+  }
 }

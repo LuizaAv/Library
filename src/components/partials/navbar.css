@@ -1,73 +1,79 @@
 
-
-/*#f0f0f0 #C209C1*/
-
-.navMainContainer{
-    top:0;
-    position: fixed;
-    display: flex;
-    flex-direction: row;
-    height: 70px;
-    width: 100%;
-    background-color: #ffffff;
-    border-bottom: 1px solid rgb(223, 219, 219);
-    z-index: 1;
+.navMainContainer {
+  top: 0;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  height: 70px;
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom: 1px solid rgb(223, 219, 219);
+  z-index: 1;
 }
 
-.logoContainer{
-    height: 100%;
-    width: 30%;
+.logoContainer {
+  height: 100%;
+  width: 30%;
+  margin-left: 5%;
+}
+
+.logo {
+  height: 98%;
+}
+
+.linkContainer {
+  display: flex;
+  width: 70%;
+  margin-right: 5%;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.navbarLinks {
+  margin-left: 10%;
+  text-decoration: none;
+  color: #c209c1;
+  font-weight: 600;
+}
+
+.navbarLinks:focus {
+  background-image: linear-gradient(
+    to left,
+    rgb(13, 4, 153),
+    rgb(6, 129, 245),
+    rgb(136, 208, 230),
+    blue,
+    rgb(156, 7, 156),
+    rgb(55, 13, 241),
+    rgb(173, 8, 91)
+  );
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.icons {
+  margin-left: 5%;
+  color: #c209c1;
+}
+
+.icons:hover {
+  color: #000000;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .navbarLinks {
     margin-left: 5%;
-}
-
-.logo{
-    height: 98%;
-}
-
-.linkContainer{
-    display: flex;
-    width: 70%;
-    margin-right: 5%;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.navbarLinks{
-    margin-left: 10%;
-    text-decoration: none;
-    color: #C209C1;
+    font-size: 12px;
     font-weight: 600;
-}
+  }
 
-.navbarLinks:focus{
-    background-image: linear-gradient(to left, rgb(13, 4, 153), rgb(6, 129, 245), rgb(136, 208, 230), blue, rgb(156, 7, 156), rgb(55, 13, 241), rgb(173, 8, 91));
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
+  .linkContainer {
+    margin-right: 10%;
+  }
 
-.icons{
-    margin-left: 5%;
-    color: #C209C1;
-}
-
-.icons:hover{
-    color: #000000;
-}
-
-@media (min-width: 768px) and (max-width: 1024px){
-    .navbarLinks{
-        margin-left: 5%;
-        font-size: 12px;
-        font-weight: 600;
-    }
-
-    .linkContainer{
-        margin-right: 10%;
-    }
-
-    .logoContainer{
-        width: 25%;
-    }
+  .logoContainer {
+    width: 25%;
+  }
 }

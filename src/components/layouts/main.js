@@ -7,16 +7,16 @@ import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { useEffect, useState } from "react";
 
-
-export default function Main({data}) {
+export default function Main({ data }) {
   const result = data;
   const [displayedBooks, setDisplayedBooks] = useState([]);
   const [element, setElement] = useState([]);
 
+  //based on result' value page was rerendered, here i set 3 books from db as displayed books, and set last 10 elemnets of book' db as last additions
   useEffect(() => {
     setDisplayedBooks(result.slice(0, 3));
     setElement(result.slice(result.length - 10, result.length));
-  }, [result])
+  }, [result]);
 
   const responsive = {
     0: { items: 1 },
@@ -24,23 +24,26 @@ export default function Main({data}) {
     1024: { items: 5 },
   };
 
+  //here I create the last additions part, save it in show variable and after that in jsx i pass it to my integrated slider component
   const show = element.map((item) => (
-    <div className="item" data-value="1" key = {item.isbn}>
-      <Link 
+    <div className="item" data-value="1" key={item.isbn}>
+      <Link
         to={{
-            pathname: `/library/bookdetails/${item.isbn}`,
-            state: {item}
-        }} 
-        target="_blank" 
-        className="aBooksLink">
-        <img src={pictureBook} className="sliderPic" alt="slidePicture"/>
+          pathname: `/library/bookdetails/${item.isbn}`,
+          state: { item },
+        }}
+        target="_blank"
+        className="aBooksLink"
+      >
+        <img src={pictureBook} className="sliderPic" alt="slidePicture" />
         <div>
-        <span>{item.title }</span><br/>
-        <span>{item.authors}</span>
+          <span>{item.title}</span>
+          <br />
+          <span>{item.authors}</span>
         </div>
       </Link>
     </div>
-  ))
+  ));
 
   const bookChunks = [];
   for (let i = 0; i < displayedBooks.length; i += 3) {
@@ -57,15 +60,16 @@ export default function Main({data}) {
           {bookChunks.map((chunk, index) => (
             <div key={index} className="aRange">
               {chunk.map((book, idx) => (
-                <Link 
-                to={{
+                <Link
+                  to={{
                     pathname: `/library/bookdetails/${book.isbn}`,
-                    state: {book}
-                }} 
-                target="_blank" 
-                className="aBooksLink">
-                <Book key={book.isbn} bookInfo={book} />
-              </Link>
+                    state: { book },
+                  }}
+                  target="_blank"
+                  className="aBooksLink"
+                >
+                  <Book key={book.isbn} bookInfo={book} />
+                </Link>
               ))}
             </div>
           ))}

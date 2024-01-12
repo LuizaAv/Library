@@ -19,6 +19,7 @@ export default function Bookdetails({ data }) {
   const id = location.pathname.slice(21, location.pathname.length);
   const book = res ? res.find((elem) => elem.isbn === id) : null;
 
+  //books' db filtered by category to find which ones has the same category of the book which page we navigate to
   const relatedBooks = res.filter((elem) =>
     elem.category.some((item) => (elem.isbn !== id && book.category.includes(item)))
   );
@@ -27,6 +28,7 @@ export default function Bookdetails({ data }) {
     "AIzaSyDc6T6ZoFDZRswbFXfYw8KEOi57VN_w_6w"
   );
 
+  //by using Google generative AI's API I send to this function the text which i want and book title, and it generates for me description about the book and set text with response
   const fetchData = async () => {
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
     const prompt = `Please give me short (3-4 lines)  description about the book ${book.title}`;
@@ -37,6 +39,7 @@ export default function Bookdetails({ data }) {
     setCheck(true);
   };
 
+  //on the book page user who is logged in, can borrow it, here function get loggedIn and token from localStorage and send request with bookid and token to backend to create a new loan for user, if user isn't loggedIn function navigates user to /login page 
   const handleBorrow = async () => {
     const loggedIn = localStorage.getItem("loggedIn");
     const token = localStorage.getItem("token");
@@ -77,6 +80,7 @@ export default function Bookdetails({ data }) {
     1024: { items: 5 },
   };
 
+  //here I organize show of related books' with integrated slider
   const show = relatedBooks.map((item) => (
     <div className="item" data-value="1" key = {item.isbn}>
       <Link 
@@ -95,6 +99,7 @@ export default function Bookdetails({ data }) {
     </div>
   ))
 
+  //after successfully logging in there will be popup, with this function user can close it and go on
   const closePopup = () => {
     setSuccess(false)
   }

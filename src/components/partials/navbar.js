@@ -11,22 +11,26 @@ export default function Navbar(){
     const [isLoggedIn, setIsLoggedIn] = useState(Boolean(localStorage.getItem("loggedIn")));
     const location = useLocation();
 
+    //based on isLoggedIn and location.pathname navbar rerenders to update the state
     useEffect(() => {
         setIsLoggedIn(Boolean(localStorage.getItem("loggedIn")));
     }, [location.pathname, isLoggedIn]);
 
+    //function removes loggedIn and token from local storage
     const logout = () => {
         localStorage.removeItem("loggedIn", "");
         localStorage.removeItem("token", "");
         setIsLoggedIn(false);
     };
 
+    //onclick login/logout icon funtcion set state of isLoggedIn and if user logged in it calls logout function
     const handleLoginClick = () => {
         setIsLoggedIn(!isLoggedIn);
         if (isLoggedIn) {
             logout();
         }
     };
+    
     return(
         <div className="navMainContainer">
             <div className="logoContainer">
