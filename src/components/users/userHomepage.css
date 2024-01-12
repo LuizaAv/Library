@@ -1,53 +1,61 @@
-
-.container{
-    min-height: 80vh;
-    height: auto;
-    width: 100%;
-    flex-direction: column;
+.container {
+  min-height: 80vh;
+  height: auto;
+  width: 100%;
+  flex-direction: column;
 }
 
-.userHomeContainer{
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    margin: auto;
-    margin-top: 15%;
+.userHomeContainer {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: auto;
+  margin-top: 15%;
 }
 
-.avatarContainer{
-    width: 30%;
+.avatarContainer {
+  width: 30%;
 }
 
-.avatar{
-    height: 200px;
-    width: 200px;
-    border-radius: 100px;
+.avatar {
+  height: 200px;
+  width: 200px;
+  border-radius: 100px;
 }
 
-.userHome{
-    display: flex;
+.userHome {
+  display: flex;
 }
 
-.infoContainer{
-    display: flex;
-    flex-direction: column;
-    background-image: linear-gradient(to left, rgb(13, 4, 153), rgb(6, 129, 245), rgb(136, 208, 230), blue, rgb(156, 7, 156), rgb(55, 13, 241), rgb(173, 8, 91));
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    background-clip: text;
-    color: transparent;
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  background-image: linear-gradient(
+    to left,
+    rgb(13, 4, 153),
+    rgb(6, 129, 245),
+    rgb(136, 208, 230),
+    blue,
+    rgb(156, 7, 156),
+    rgb(55, 13, 241),
+    rgb(173, 8, 91)
+  );
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-.show{
-    height: 40px;
-    width: 200px;
-    border-radius: 20px;
-    outline: none;
-    border: none;
-    margin-top: 2%;
-    margin-left: 5%;
+.show {
+  height: 40px;
+  width: 200px;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  margin-top: 2%;
+  margin-left: 5%;
 }
 
-.hidden{
-    visibility: hidden;
+.hidden {
+  visibility: hidden;
 }

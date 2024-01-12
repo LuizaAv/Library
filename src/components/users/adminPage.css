@@ -1,56 +1,103 @@
-.adminPageContainer{
-    display: flex;
-    flex-direction: row;
-    margin: auto;
-    margin-top: 7%;
-    width: 75%;
-    justify-content: space-between;
+.adminPageContainer {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  margin-top: 7%;
+  width: 85%;
+  justify-content: space-between;
 }
 
 .adminPageContainer h3 {
-    background-image: linear-gradient(to left, rgb(13, 4, 153), rgb(6, 129, 245), rgb(136, 208, 230), blue, rgb(156, 7, 156), rgb(55, 13, 241), rgb(173, 8, 91));
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  background-image: linear-gradient(
+    to left,
+    rgb(13, 4, 153),
+    rgb(6, 129, 245),
+    rgb(136, 208, 230),
+    blue,
+    rgb(156, 7, 156),
+    rgb(55, 13, 241),
+    rgb(173, 8, 91)
+  );
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-.adminPageH3{
-    margin-bottom: 10%;
+.adminPageH3 {
+  margin-bottom: 10%;
 }
 
-.adminPageInput{
-    height: 35px;
-    width: 200px;
-    margin-bottom: 2%;
-    border-radius: 10px;
-    outline: none;
-    border: none;
+.adminPageInput {
+  height: 35px;
+  width: 200px;
+  margin-bottom: 2%;
+  border-radius: 10px;
+  outline: none;
+  border: none;
 }
 
 .adminPageContainer button,
 .adminPageSubmit {
-    height: 40px;
-    width: 200px;
-    border: none;
-    border-radius: 10px;
-    margin-top: 11%;
-    outline: none;
-    border-radius: 20px;
-    background-color: #fc9af6;
-    color: #ffffff;
-    font-weight: 600;
-    box-shadow: 0 3px 10px #fc9af6;
-    transition: 0.8s ease-out 200ms;
+  height: 40px;
+  width: 200px;
+  border: none;
+  border-radius: 10px;
+  margin-top: 11%;
+  outline: none;
+  border-radius: 20px;
+  background-color: #fc9af6;
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 3px 10px #fc9af6;
+  transition: 0.8s ease-out 200ms;
 }
 
 .adminPageContainer button:hover,
 .adminPageSubmit:hover {
-    background-color: #ffffff;
-    color: #C209C1;
-    transition: 0.8s ease-out 200ms;
+  background-color: #ffffff;
+  color: #c209c1;
+  transition: 0.8s ease-out 200ms;
 }
 
 #deleteBookContainer input {
-    margin-top: 11%;
+  margin-top: 11%;
+}
+
+.blackListContainerHiddon {
+  visibility: hidden;
+  position: absolute;
+}
+
+.blackListContainerVisible {
+  visibility: visible;
+  position: absolute;
+  height: auto;
+  min-height: 300px;
+  width: 280px;
+  font-size: 12px;
+  margin-top: 3%;
+  padding-left: 10px;
+  border-radius: 10px;
+  background-color: #fc9af6;
+  border: 2px solid #c209c1;
+}
+
+.hideblackListButton {
+  visibility: hidden;
+}
+
+.showblackListButton {
+  height: 40px;
+  width: 200px;
+  border: none;
+  border-radius: 10px;
+  margin-top: 2%;
+  outline: none;
+  border-radius: 20px;
+  background-color: #fc9af6;
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 3px 10px #fc9af6;
+  transition: 0.8s ease-out 200ms;
 }

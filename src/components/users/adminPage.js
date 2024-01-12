@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./adminPage.css";
-import { BiSolidLeftArrowAlt } from "react-icons/bi";
 import Popup from "./popup";
 
 export default function AdminPage() {
@@ -20,8 +19,9 @@ export default function AdminPage() {
   const [bookAdded, setBookAdded] = useState(false);
   const [deleted, setDeleted] = useState(false);
   const [blackListMember, setBlackListMember] = useState(false);
-  const [showExpired, setShowExpired] = useState("")
+  const [showExpired, setShowExpired] = useState("");
 
+  //bellow functions handle inputs' value changes and set appropriate states
   const handleChange = (e) => {
     setIsbn(e.target.value);
   };
@@ -66,6 +66,7 @@ export default function AdminPage() {
     setPageCount(+e.target.value);
   };
 
+  //function handles delete button click, send isbn value to backend appropriate endpoint to find the book from db and delete it, recieves response and if the book successfully deleted, it set the deleted state as true
   const handleDeleteClick = async () => {
     if (isbn) {
       try {
@@ -75,11 +76,10 @@ export default function AdminPage() {
             isbn,
           }
         );
-        console.log(response)
-        if(response.status === 200){
-          setDeleted(true)
-        }
 
+        if (response.status === 200) {
+          setDeleted(true);
+        }
       } catch (error) {
         console.error("Delete error:", error);
       }
@@ -88,6 +88,7 @@ export default function AdminPage() {
     }
   };
 
+  //send all book object properties to backend' appropriate endpoint to add the book in db, and if book successfully added, it set added state as true
   const handleAddClick = async (e) => {
     e.preventDefault();
 
@@ -110,10 +111,10 @@ export default function AdminPage() {
         },
       });
 
-      if(response.status === 201){
+      if (response.status === 201) {
         setBookAdded(true);
       }
-      
+
       setTitle("");
       setAuthors("");
       setISBN("");
@@ -124,12 +125,12 @@ export default function AdminPage() {
       setPublisher("");
       setLanguage("");
       setPageCount("");
-
     } catch (error) {
       console.error("Error adding book:", error);
     }
   };
 
+  //onclick show black list button this function organize request to backend to find loans, who's loan's date were expired, after that it set blackListMember state with the objects who's date was expired
   const handleShowBlackList = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -150,19 +151,19 @@ export default function AdminPage() {
       });
 
       const userIds = expiredLoans.map((item) => item.user);
-      
-      console.log(expiredLoans)
+
+      console.log(expiredLoans);
       if (userIds.length > 0) {
         setExpiredUserId((prevIds) => [...prevIds, ...userIds]);
       }
 
       setBlackListMember(true);
-
     } catch (error) {
       console.error("Error fetching blacklisted users:", error);
     }
   };
 
+  //this function, based on expiredUserId state changes rerenders and send the array of expiredUser's to backend, also it send authorizing token, an recieves back the users' data, whos loan date was expired, and set appropriate state with this response
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -181,22 +182,27 @@ export default function AdminPage() {
           }
         );
         setShowExpired(response.data);
-      }  catch (error) {
-        console.log("expired users fetch error: ", error.response ? error.response.data : error.message);
+      } catch (error) {
+        console.log(
+          "expired users fetch error: ",
+          error.response ? error.response.data : error.message
+        );
       }
     };
 
     fetchData();
   }, [expiredUserId]);
 
+  //After successfully adding book there will be a popup window, and close button. This function close the popup onclick
   const closeAddedPopup = () => {
-    setBookAdded(false)
-  }
+    setBookAdded(false);
+  };
 
+  //After successfully deleting book there will be a popup window, and close button. This function close the popup onclick
   const closeDeletedPopup = () => {
     setDeleted(false);
     setIsbn("");
-  }
+  };
 
   return (
     <div className="adminPageContainer">
@@ -284,39 +290,48 @@ export default function AdminPage() {
           />
           <br />
           <input type="submit" value="Create" className="adminPageSubmit" />
-          {bookAdded && ( 
-            <Popup popUp = {closeAddedPopup} textMessage = "Book was added!" />
+          {bookAdded && (
+            <Popup popUp={closeAddedPopup} textMessage="Book was added!" />
           )}
         </form>
       </div>
       <div id="deleteBookContainer">
         <h3 className="adminPageH3">Delete a book</h3>
-        <input 
-        placeholder="  enter the isbn code" 
-        onChange={handleChange} 
-        className="adminPageInput"
-        value = {isbn}
+        <input
+          placeholder="  enter the isbn code"
+          onChange={handleChange}
+          className="adminPageInput"
+          value={isbn}
         />
         <br />
         <button onClick={handleDeleteClick}>Delete</button>
-        {deleted && ( 
-          <Popup popUp = {closeDeletedPopup} textMessage = "Book was deleted!" />
+        {deleted && (
+          <Popup popUp={closeDeletedPopup} textMessage="Book was deleted!" />
         )}
       </div>
-      <div>
+      <div className="blackMainContainer">
         <h3>Black List</h3>
         <button onClick={handleShowBlackList}>Show the black list users</button>
-        {
-          // blackListMember ? showExpired.map((item) => {
-          //   return(
-          //     <div>
-          //       <p>{item.wave}</p>
-          //       <p>{item.name}</p>
-          //       <p>{item.surname}</p>
-          //     </div>
-          //   )
-          // }) : null
-        }
+        <div
+          className={
+            !blackListMember
+              ? "blackListContainerHidden"
+              : "blackListContainerVisible"
+          }
+        >
+          {blackListMember && showExpired
+            ? showExpired.map((item, index) => {
+                return (
+                  <div>
+                    <p>
+                      {++index} . {item.surname} {item.name} / {item.wave} /{" "}
+                      {item.email}
+                    </p>
+                  </div>
+                );
+              })
+            : null}
+        </div>
       </div>
     </div>
   );

@@ -1,23 +1,32 @@
-.userLoansContainer{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: auto;
-    width: 95%;
-    height: 30vh;
-    color: #ffffff;
+.userLoansContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  width: 95%;
+  height: 30vh;
+  color: #ffffff;
 }
 
-.loanBook{
-    padding: 4%;
+.loanBook {
+  padding: 4%;
 }
 
-.userLoanMainContainer h1{
-    margin-left: 35%;
-    background-image: linear-gradient(to left, rgb(13, 4, 153), rgb(6, 129, 245), rgb(136, 208, 230), blue, rgb(156, 7, 156), rgb(55, 13, 241), rgb(173, 8, 91));
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    background-clip: text;
-    color: transparent;
+.userLoanMainContainer h1 {
+  margin-left: 35%;
+  background-image: linear-gradient(
+    to left,
+    rgb(13, 4, 153),
+    rgb(6, 129, 245),
+    rgb(136, 208, 230),
+    blue,
+    rgb(156, 7, 156),
+    rgb(55, 13, 241),
+    rgb(173, 8, 91)
+  );
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }

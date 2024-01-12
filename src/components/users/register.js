@@ -24,36 +24,42 @@ export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [confirmPassErr, setConfirmPassErr] = useState(false);
   const [successReg, setSuccessReg] = useState("");
-  const [showPopup, setShowPopup] = useState(false); 
+  const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
 
+  //After successfully logging in there will be a popup window, and close button. This function close the popup onclick
   useEffect(() => {
     if (successReg) {
       setShowPopup(true);
     }
   }, [showPopup, successReg]);
 
+  //onsubmit we send all needed data about user to backend for registration and if it is successfully seting state successReg as true
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:3001/users/register", {
-        name,
-        surname,
-        email,
-        password,
-        mobile, 
-        wave, 
-        gender
-      });
+      const response = await axios.post(
+        "http://localhost:3001/users/register",
+        {
+          name,
+          surname,
+          email,
+          password,
+          mobile,
+          wave,
+          gender,
+        }
+      );
       if (response.status === 201) {
-        setSuccessReg(true);  
+        setSuccessReg(true);
       }
     } catch (error) {
       console.error("Registration error:", error);
     }
   };
 
+  //handling name input with checking is it valid or not
   const handleName = (e) => {
     let nameInput = e.target.value;
     setName(nameInput);
@@ -65,6 +71,7 @@ export default function Register() {
     }
   };
 
+  //handling surname input with checking is it valid or not
   const handleSurname = (e) => {
     let surNameInput = e.target.value;
     setSurname(surNameInput);
@@ -75,6 +82,7 @@ export default function Register() {
     }
   };
 
+  //handling email input with checking is it valid or not
   const handleEmail = (e) => {
     const emailVal = e.target.value;
     setEmail(emailVal);
@@ -88,18 +96,22 @@ export default function Register() {
     }
   };
 
+  //handling mobile input
   const handleMobile = (e) => {
     setMobile(e.target.value);
   };
 
+  //handling wave input
   const handleWave = (e) => {
     setWave(e.target.value);
   };
 
+  //handling gender input
   const handleGender = (e) => {
     setGender(e.target.value);
-  }
+  };
 
+  //handling password input with checking is it valid or not
   const handlePassword = (e) => {
     let pass = e.target.value;
     setPassword(pass);
@@ -115,6 +127,7 @@ export default function Register() {
     }
   };
 
+  //handling confirm password input with checking is it valid or not
   const handleConfirmPassword = (e) => {
     let confPass = e.target.value;
     setConfirmPassword(confPass);
@@ -128,11 +141,12 @@ export default function Register() {
     }
   };
 
+  //after successfully registration this function close popup about being registered and navigate to /login
   const closePopup = () => {
-    setShowPopup(false); 
-    navigate(`/login`); 
+    setShowPopup(false);
+    navigate(`/login`);
   };
-  
+
   return (
     <div className="registrationContainer">
       <h1>Registration form</h1>
@@ -185,7 +199,9 @@ export default function Register() {
           value="default"
           onChange={handleWave}
         >
-          <option value="default" disabled>Select a Group</option>
+          <option value="default" disabled>
+            Select a Group
+          </option>
           <option value="Wave 6">Wave 6</option>
           <option value="Wave 5">Wave 5</option>
           <option value="Wave 4">Wave 4</option>
@@ -202,7 +218,9 @@ export default function Register() {
           value="default"
           onChange={handleGender}
         >
-          <option value="default" disabled>Select a gender</option>
+          <option value="default" disabled>
+            Select a gender
+          </option>
           <option value="Wave 6">Female</option>
           <option value="Wave 5">Male</option>
         </select>
@@ -225,8 +243,8 @@ export default function Register() {
         />
         {confirmPassErr && <div className="errorReg">{confirmPassErr}</div>}
         <input type="submit" value="Submit" className="registrationSubmit" />
-        {showPopup && ( 
-          <Popup popUp = {closePopup} textMessage = "Registration Successful!" />
+        {showPopup && (
+          <Popup popUp={closePopup} textMessage="Registration Successful!" />
         )}
         <Link to="/login" target="_blank" className="registerLink">
           Have you already an account?

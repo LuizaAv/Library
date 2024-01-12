@@ -7,6 +7,7 @@ import "./userLoans.css"
 export default function UserLoans({ userId, bookInfo }) {
   const [userLoans, setUserLoans] = useState([]);
 
+  //function send the token and userId to backend and getback response about the users, books they loan and borrowed / return dates
   useEffect(() => {
     const fetchUserLoans = async () => {
       try {
@@ -30,12 +31,13 @@ export default function UserLoans({ userId, bookInfo }) {
 
   const responsive = {
     0: { items: 1 },
-    568: { items: 3 },
-    1024: { items: 5 },
+    568: { items: 2 },
+    1024: { items: 4 },
   };
 
   const returnDay = (new Date()).toISOString();
 
+  //extracting the books which user loan by isbn of book and show it in user's homepage with integrated slider
   const show = userLoans.map((item) => {
     const matchingBook = bookInfo.find((elem) => elem.isbn === item.book);
 

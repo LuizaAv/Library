@@ -1,105 +1,112 @@
-
-.registrationContainer{
-    margin: auto;
-    margin-top: 10%;
-    width: 40%;
-    color: #ffffff;
+.registrationContainer {
+  margin: auto;
+  margin-top: 10%;
+  width: 40%;
+  color: #ffffff;
 }
 
-.registrationContainer h1{
-    background-image: linear-gradient(to left, rgb(13, 4, 153), rgb(6, 129, 245), rgb(136, 208, 230), blue, rgb(156, 7, 156), rgb(55, 13, 241), rgb(173, 8, 91));
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    background-clip: text;
-    color: transparent;
+.registrationContainer h1 {
+  background-image: linear-gradient(
+    to left,
+    rgb(13, 4, 153),
+    rgb(6, 129, 245),
+    rgb(136, 208, 230),
+    blue,
+    rgb(156, 7, 156),
+    rgb(55, 13, 241),
+    rgb(173, 8, 91)
+  );
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-.registrationContainer label{
-    margin-top: 1%;
+.registrationContainer label {
+  margin-top: 1%;
 }
 
-.registrationForm{
-    display: flex;
-    flex-direction: column;
+.registrationForm {
+  display: flex;
+  flex-direction: column;
 }
 
-.fullNameContainer{
-    display: flex;
-    flex-direction: row;
-    padding: 0%;
-    justify-content: space-between;
+.fullNameContainer {
+  display: flex;
+  flex-direction: row;
+  padding: 0%;
+  justify-content: space-between;
 }
 
-.fullNameDivs{
-    display: flex;
-    flex-direction: column;
+.fullNameDivs {
+  display: flex;
+  flex-direction: column;
 }
 
-.registrationSubmit{
-    margin: auto;
-    margin-top: 7%;
-    margin-bottom: 5%;
-    height: 45px;
-    width: 70%;
-    border: none;
-    outline: none;
-    border-radius: 20px;
-    background-color: #fc9af6;
-    color: #ffffff;
-    font-weight: 800;
-    box-shadow: 0 3px 10px #fc9af6;
-    transition: 0.8s ease-out 200ms;
+.registrationSubmit {
+  margin: auto;
+  margin-top: 7%;
+  margin-bottom: 5%;
+  height: 45px;
+  width: 70%;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  background-color: #fc9af6;
+  color: #ffffff;
+  font-weight: 800;
+  box-shadow: 0 3px 10px #fc9af6;
+  transition: 0.8s ease-out 200ms;
 }
 
-.registrationSubmit:hover{
-    background-color: #ffffff;
-    color: #C209C1;
-    transition: 0.8s ease-out 200ms;
+.registrationSubmit:hover {
+  background-color: #ffffff;
+  color: #c209c1;
+  transition: 0.8s ease-out 200ms;
 }
 
-.fullNameInput{
-    margin-top: 3%;
-    height: 50px;
-    width: 100%;
-    outline: none;
-    border: none;
-    border-radius: 7px;
-    box-shadow: 0 3px 10px #fc9af6;
+.fullNameInput {
+  margin-top: 3%;
+  height: 50px;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 7px;
+  box-shadow: 0 3px 10px #fc9af6;
 }
 
-.registrationInputs{
-    margin-top: 3%;
-    padding-left: 1%;
-    height: 50px;
-    width: 100%;
-    outline: none;
-    border: none;
-    border-radius: 7px;
-    box-shadow: 0 3px 10px #fc9af6;
+.registrationInputs {
+  margin-top: 3%;
+  padding-left: 1%;
+  height: 50px;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 7px;
+  box-shadow: 0 3px 10px #fc9af6;
 }
 
-.registrationSelect{
-    margin-top: 3%;
-    padding-left: 1%;
-    height: 50px;
-    width: 101.5%;
-    outline: none;
-    border: none;
-    border-radius: 7px;
-    color: #C209C1;
-    font-weight: 700;
-    box-shadow: 0 3px 10px #fc9af6;
+.registrationSelect {
+  margin-top: 3%;
+  padding-left: 1%;
+  height: 50px;
+  width: 101.5%;
+  outline: none;
+  border: none;
+  border-radius: 7px;
+  color: #c209c1;
+  font-weight: 700;
+  box-shadow: 0 3px 10px #fc9af6;
 }
 
-.registerLink{
-    text-decoration: none;
-    color: #ffffff;
-    margin-bottom: 15%;
-    margin-left: 30%;
+.registerLink {
+  text-decoration: none;
+  color: #ffffff;
+  margin-bottom: 15%;
+  margin-left: 30%;
 }
 
-.errorReg{
-    color: red;
-    font-size: 12px;
+.errorReg {
+  color: red;
+  font-size: 12px;
 }
-
