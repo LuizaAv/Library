@@ -1,17 +1,32 @@
-import "./navbar.css"
+import "./navbar.css";
+import { useState, useEffect } from "react";
 import logo from "../../images/logo.png"
 import { BsSearch } from "react-icons/bs"
 import { RiUserSharedLine } from "react-icons/ri";
 import { RiUserReceivedLine } from "react-icons/ri";
-import { Link } from "react-router-dom"
+import { Link, useLocation} from "react-router-dom"
 
-const logout = () => {
-    localStorage.removeItem("loggedIn", "");
-    localStorage.removeItem("token", "")
-}
 
 export default function Navbar(){
-    const isLoggedIn = localStorage.getItem("loggedIn")
+    const [isLoggedIn, setIsLoggedIn] = useState(Boolean(localStorage.getItem("loggedIn")));
+    const location = useLocation();
+
+    useEffect(() => {
+        setIsLoggedIn(Boolean(localStorage.getItem("loggedIn")));
+    }, [location.pathname, isLoggedIn]);
+
+    const logout = () => {
+        localStorage.removeItem("loggedIn", "");
+        localStorage.removeItem("token", "");
+        setIsLoggedIn(false);
+    };
+
+    const handleLoginClick = () => {
+        setIsLoggedIn(!isLoggedIn);
+        if (isLoggedIn) {
+            logout();
+        }
+    };
     return(
         <div className="navMainContainer">
             <div className="logoContainer">
@@ -37,8 +52,8 @@ export default function Navbar(){
                                     HomePage
                                 </Link>
                 }
-                <Link to = "/login" className="navbarLinks">
-                    {isLoggedIn ? <RiUserSharedLine className="icons" onClick={logout}/> : <RiUserReceivedLine className="icons"/>}
+                <Link to = "/login" className="navbarLinks" onClick={handleLoginClick}>
+                    {isLoggedIn ? <RiUserSharedLine className="icons" /> : <RiUserReceivedLine className="icons"/>}
                 </Link>
             </div>
         </div>
