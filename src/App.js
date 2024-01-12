@@ -7,7 +7,7 @@ import Library from "./components/layouts/library";
 import Login from "./components/users/login";
 import Register from "./components/users/register";
 import Footer from "./components/partials/footer";
-import Bookdetails from "./components/partials/bookdetails";
+import Bookdetails from "./components/partials/bookDetails";
 import UserHomePage from "./components/users/userHomepage";
 import ScrollToTop from "./ScrollToTop";
 import "./App.css";

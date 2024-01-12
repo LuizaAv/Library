@@ -5,7 +5,7 @@ import { useLocation, useNavigate, Link } from "react-router-dom";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import pictureBook from "../../images/book2.png"
 import axios from "axios";
-import "./bookdetails.css";
+import "./bookDetails.css";
 import { useState } from "react";
 import Popup from "../users/popup";
 
