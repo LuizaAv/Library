@@ -1,9 +1,8 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
+const Admin = require("../models/Admin")
 const { generateToken } = require("../auth.js");
 
-
-const admin = ["l.avetisyan7777@gmail.com"]
 
 //user Registration Controller
 exports.registerUser = async (req, res) => {
@@ -17,7 +16,9 @@ exports.registerUser = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    let role = 'user';
+    const adminExists = await Admin.findOne({ email });
+
+    let role = adminExists ? 'admin' : 'user';
 
     const user = new User({
       role,
