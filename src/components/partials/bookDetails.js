@@ -25,7 +25,7 @@ export default function Bookdetails({ data }) {
   );
 
   const genAI = new GoogleGenerativeAI(
-    "AIzaSyDc6T6ZoFDZRswbFXfYw8KEOi57VN_w_6w"
+    `personal_api_key`
   );
 
   //by using Google generative AI's API I send to this function the text which i want and book title, and it generates for me description about the book and set text with response
